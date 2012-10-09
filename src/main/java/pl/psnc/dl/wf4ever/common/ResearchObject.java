@@ -19,11 +19,17 @@ public class ResearchObject {
     /** workspace id in dLibra. */
     private long dlWorkspaceId;
 
-    /** RO id in dLibra. */
-    private long dlROId;
+    /** RO id in dLibra, default is 0. */
+    private long dlROId = 0;
 
-    /** RO version id in dLibra. */
-    private long dlROVersionId;
+    /** RO version id in dLibra, default is 0. */
+    private long dlROVersionId = 0;
+
+    /** RO edition id in dLibra, default is 0. */
+    private long dlEditionId = 0;
+
+    /** id used in dLibra as a name. */
+    private final String id;
 
 
     /**
@@ -34,6 +40,8 @@ public class ResearchObject {
      */
     public ResearchObject(URI uri) {
         this.uri = uri;
+        String[] segments = uri.getPath().split("/");
+        this.id = segments[segments.length - 1];
     }
 
 
@@ -67,8 +75,23 @@ public class ResearchObject {
     }
 
 
+    public long getDlEditionId() {
+        return dlEditionId;
+    }
+
+
+    public void setDlEditionId(long dlEditionId) {
+        this.dlEditionId = dlEditionId;
+    }
+
+
     public URI getUri() {
         return uri;
+    }
+
+
+    public String getId() {
+        return id;
     }
 
 }
