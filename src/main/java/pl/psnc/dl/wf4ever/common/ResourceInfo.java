@@ -25,6 +25,9 @@ public class ResourceInfo {
     /** last modification date. */
     private final DateTime lastModified;
 
+    /** MIME type. */
+    private final String mimeType;
+
 
     /**
      * Constructor.
@@ -39,13 +42,17 @@ public class ResourceInfo {
      *            i.e. MD5, SHA1
      * @param lastModified
      *            date of last modification
+     * @param mimeType
+     *            MIME type
      */
-    public ResourceInfo(String name, String checksum, long sizeInBytes, String digestMethod, DateTime lastModified) {
+    public ResourceInfo(String name, String checksum, long sizeInBytes, String digestMethod, DateTime lastModified,
+            String mimeType) {
         this.name = name;
         this.checksum = checksum;
         this.sizeInBytes = sizeInBytes;
         this.digestMethod = digestMethod;
         this.lastModified = lastModified;
+        this.mimeType = mimeType;
     }
 
 
@@ -73,4 +80,8 @@ public class ResourceInfo {
         return lastModified;
     }
 
+
+    public String getMimeType() {
+        return mimeType;
+    }
 }
