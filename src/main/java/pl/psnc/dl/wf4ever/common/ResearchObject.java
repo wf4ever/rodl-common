@@ -13,6 +13,9 @@ import java.net.URI;
  */
 public class ResearchObject {
 
+    /** Manifest path. */
+    public static final String MANIFEST_PATH = ".ro/manifest.rdf";
+
     /** RO URI. */
     private final URI uri;
 
@@ -39,7 +42,7 @@ public class ResearchObject {
      *            RO URI
      */
     public ResearchObject(URI uri) {
-        this.uri = uri;
+        this.uri = uri.normalize();
         String[] segments = uri.getPath().split("/");
         this.id = segments[segments.length - 1];
     }
@@ -87,6 +90,11 @@ public class ResearchObject {
 
     public URI getUri() {
         return uri;
+    }
+
+
+    public URI getManifestUri() {
+        return uri.resolve(MANIFEST_PATH);
     }
 
 
