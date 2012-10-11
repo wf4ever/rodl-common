@@ -102,4 +102,15 @@ public class ResearchObject {
         return id;
     }
 
+
+    /**
+     * Load a research object or create a new instance.
+     * 
+     * @param uri
+     *            RO URI
+     * @return a research object with its URI set and other details loaded, if possible
+     */
+    public static ResearchObject get(URI uri) {
+        return new ResearchObject(uri);
+    }
 }
