@@ -5,19 +5,32 @@ package pl.psnc.dl.wf4ever.common;
 
 import java.net.URI;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 /**
  * A DAO for a research object.
  * 
  * @author piotrekhol
  * 
  */
+@Entity
 public class ResearchObject {
+
+    /** logger. */
+    @SuppressWarnings("unused")
+    private static final Logger LOGGER = Logger.getLogger(ResearchObject.class);
 
     /** Manifest path. */
     public static final String MANIFEST_PATH = ".ro/manifest.rdf";
 
     /** RO URI. */
-    private final URI uri;
+    private URI uri;
 
     /** workspace id in dLibra. */
     private long dlWorkspaceId;
@@ -34,6 +47,9 @@ public class ResearchObject {
     /** id used in dLibra as a name. */
     private final String id;
 
+    /** Hibernate session factory. */
+    private static SessionFactory sessionFactory;
+
 
     /**
      * Constructor.
@@ -48,6 +64,7 @@ public class ResearchObject {
     }
 
 
+    @Basic
     public long getDlWorkspaceId() {
         return dlWorkspaceId;
     }
@@ -58,6 +75,7 @@ public class ResearchObject {
     }
 
 
+    @Basic
     public long getDlROId() {
         return dlROId;
     }
@@ -68,6 +86,7 @@ public class ResearchObject {
     }
 
 
+    @Basic
     public long getDlROVersionId() {
         return dlROVersionId;
     }
@@ -78,6 +97,7 @@ public class ResearchObject {
     }
 
 
+    @Basic
     public long getDlEditionId() {
         return dlEditionId;
     }
@@ -88,8 +108,14 @@ public class ResearchObject {
     }
 
 
+    @Id
     public URI getUri() {
         return uri;
+    }
+
+
+    public void setUri(URI uri) {
+        this.uri = uri;
     }
 
 
@@ -111,6 +137,13 @@ public class ResearchObject {
      * @return a research object with its URI set and other details loaded, if possible
      */
     public static ResearchObject get(URI uri) {
-        return new ResearchObject(uri);
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        ResearchObject researchObject = (ResearchObject) session.get(ResearchObject.class, uri);
+
+        session.getTransaction().commit();
+
+        return researchObject;
     }
+
 }
