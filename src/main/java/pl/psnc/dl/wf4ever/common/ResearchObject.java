@@ -6,8 +6,11 @@ package pl.psnc.dl.wf4ever.common;
 import java.net.URI;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -20,6 +23,7 @@ import org.hibernate.SessionFactory;
  * 
  */
 @Entity
+@Table(name = "research_objects")
 public class ResearchObject {
 
     /** logger. */
@@ -45,7 +49,7 @@ public class ResearchObject {
     private long dlEditionId = 0;
 
     /** id used in dLibra as a name. */
-    private final String id;
+    private String id;
 
     /** Hibernate session factory. */
     private static SessionFactory sessionFactory;
@@ -53,11 +57,23 @@ public class ResearchObject {
 
     /**
      * Constructor.
+     */
+    public ResearchObject() {
+
+    }
+
+
+    /**
+     * Constructor.
      * 
+     * 
+     * @param sessionFactory
+     *            Hibernate session factory
      * @param uri
      *            RO URI
      */
-    public ResearchObject(URI uri) {
+    public ResearchObject(SessionFactory sessionFactory, URI uri) {
+        ResearchObject.sessionFactory = sessionFactory;
         this.uri = uri.normalize();
         String[] segments = uri.getPath().split("/");
         this.id = segments[segments.length - 1];
@@ -109,6 +125,18 @@ public class ResearchObject {
 
 
     @Id
+    @Column(name = "uri")
+    public String getUriString() {
+        return uri.toString();
+    }
+
+
+    public void setUriString(String uriString) {
+        this.uri = URI.create(uriString);
+    }
+
+
+    @Transient
     public URI getUri() {
         return uri;
     }
@@ -119,11 +147,13 @@ public class ResearchObject {
     }
 
 
+    @Transient
     public URI getManifestUri() {
-        return uri.resolve(MANIFEST_PATH);
+        return uri != null ? uri.resolve(MANIFEST_PATH) : null;
     }
 
 
+    @Transient
     public String getId() {
         return id;
     }
@@ -138,12 +168,26 @@ public class ResearchObject {
      */
     public static ResearchObject get(URI uri) {
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        ResearchObject researchObject = (ResearchObject) session.get(ResearchObject.class, uri);
-
-        session.getTransaction().commit();
-
+        ResearchObject researchObject = (ResearchObject) session.get(ResearchObject.class, uri.toString());
         return researchObject;
+    }
+
+
+    /**
+     * Persist the object in the database.
+     */
+    public void save() {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(this);
+    }
+
+
+    /**
+     * Delete the object from the database.
+     */
+    public void delete() {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(this);
     }
 
 }
