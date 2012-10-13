@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -24,7 +23,10 @@ import org.hibernate.SessionFactory;
  */
 @Entity
 @Table(name = "research_objects")
-public class ResearchObject {
+public class ResearchObject extends ActiveRecord {
+
+    /** id. */
+    private static final long serialVersionUID = 9168888879916459732L;
 
     /** logger. */
     @SuppressWarnings("unused")
@@ -50,9 +52,6 @@ public class ResearchObject {
 
     /** id used in dLibra as a name. */
     private String id;
-
-    /** Hibernate session factory. */
-    private SessionFactory sessionFactory;
 
 
     /**
@@ -172,39 +171,16 @@ public class ResearchObject {
 
 
     /**
-     * Load a research object.
+     * Find a research object in the database.
      * 
      * @param sessionFactory
-     *            session factory for this object
+     *            session factory
      * @param uri
      *            RO URI
-     * @return a research object with its URI set and other details loaded, if possible
+     * @return research object or null
      */
     public static ResearchObject findByUri(SessionFactory sessionFactory, URI uri) {
-        Session session = sessionFactory.getCurrentSession();
-        ResearchObject researchObject = (ResearchObject) session.get(ResearchObject.class, uri.toString());
-        if (researchObject != null) {
-            researchObject.sessionFactory = sessionFactory;
-        }
-        return researchObject;
-    }
-
-
-    /**
-     * Persist the object in the database.
-     */
-    public void save() {
-        Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(this);
-    }
-
-
-    /**
-     * Delete the object from the database.
-     */
-    public void delete() {
-        Session session = sessionFactory.getCurrentSession();
-        session.delete(this);
+        return findByPrimaryKey(ResearchObject.class, sessionFactory, uri.toString());
     }
 
 }
