@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 
 /**
  * A DAO for a research object.
@@ -65,14 +64,10 @@ public class ResearchObject extends ActiveRecord {
     /**
      * Constructor.
      * 
-     * 
-     * @param sessionFactory
-     *            Hibernate session factory
      * @param uri
      *            RO URI
      */
-    public ResearchObject(SessionFactory sessionFactory, URI uri) {
-        this.sessionFactory = sessionFactory;
+    public ResearchObject(URI uri) {
         setUri(uri.normalize());
     }
 
@@ -173,14 +168,12 @@ public class ResearchObject extends ActiveRecord {
     /**
      * Find a research object in the database.
      * 
-     * @param sessionFactory
-     *            session factory
      * @param uri
      *            RO URI
      * @return research object or null
      */
-    public static ResearchObject findByUri(SessionFactory sessionFactory, URI uri) {
-        return findByPrimaryKey(ResearchObject.class, sessionFactory, uri.toString());
+    public static ResearchObject findByUri(URI uri) {
+        return findByPrimaryKey(ResearchObject.class, uri.toString());
     }
 
 }

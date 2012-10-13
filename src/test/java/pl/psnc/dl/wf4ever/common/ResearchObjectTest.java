@@ -4,12 +4,7 @@ import java.net.URI;
 
 import junit.framework.Assert;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -20,28 +15,8 @@ import org.junit.Test;
  */
 public class ResearchObjectTest {
 
-    /** Session factory. */
-    private static SessionFactory sessionFactory;
-
     /** URI of the RO used in the test. */
     private static URI roURI = URI.create("http://example.org/ROs/foobar/");
-
-
-    /**
-     * Init the tests.
-     * 
-     * @throws Exception
-     *             error
-     */
-    @BeforeClass
-    public static void setUpBeforeClass()
-            throws Exception {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties())
-                .buildServiceRegistry();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-    }
 
 
     /**
@@ -49,10 +24,10 @@ public class ResearchObjectTest {
      */
     @AfterClass
     public static void tearDownAfterClass() {
-        sessionFactory.getCurrentSession().beginTransaction();
-        ResearchObject ro = new ResearchObject(sessionFactory, roURI);
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+        ResearchObject ro = new ResearchObject(roURI);
         ro.delete();
-        sessionFactory.getCurrentSession().getTransaction().commit();
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
     }
 
 
@@ -90,18 +65,18 @@ public class ResearchObjectTest {
      */
     @Test
     public void testSaveLoad() {
-        ResearchObject ro = new ResearchObject(sessionFactory, roURI);
+        ResearchObject ro = new ResearchObject(roURI);
         ro.setDlWorkspaceId(1);
         ro.setDlROId(2);
         ro.setDlROVersionId(3);
         ro.setDlEditionId(4);
-        sessionFactory.getCurrentSession().beginTransaction();
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ro.save();
-        sessionFactory.getCurrentSession().getTransaction().commit();
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 
-        sessionFactory.getCurrentSession().beginTransaction();
-        ResearchObject ro2 = ResearchObject.findByUri(sessionFactory, roURI);
-        sessionFactory.getCurrentSession().getTransaction().commit();
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+        ResearchObject ro2 = ResearchObject.findByUri(roURI);
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
         Assert.assertEquals(roURI, ro2.getUri());
         Assert.assertEquals(1, ro2.getDlWorkspaceId());
         Assert.assertEquals(2, ro2.getDlROId());
@@ -115,24 +90,24 @@ public class ResearchObjectTest {
      */
     @Test
     public void testDelete() {
-        ResearchObject ro = new ResearchObject(sessionFactory, roURI);
+        ResearchObject ro = new ResearchObject(roURI);
         ro.setDlWorkspaceId(1);
         ro.setDlROId(2);
         ro.setDlROVersionId(3);
         ro.setDlEditionId(4);
-        sessionFactory.getCurrentSession().beginTransaction();
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ro.save();
-        sessionFactory.getCurrentSession().getTransaction().commit();
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 
-        sessionFactory.getCurrentSession().beginTransaction();
-        ResearchObject ro2 = ResearchObject.findByUri(sessionFactory, roURI);
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+        ResearchObject ro2 = ResearchObject.findByUri(roURI);
         ro2.delete();
-        sessionFactory.getCurrentSession().getTransaction().commit();
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 
-        sessionFactory.getCurrentSession().beginTransaction();
-        ResearchObject ro3 = ResearchObject.findByUri(sessionFactory, roURI);
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+        ResearchObject ro3 = ResearchObject.findByUri(roURI);
         Assert.assertNull(ro3);
-        sessionFactory.getCurrentSession().getTransaction().commit();
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
     }
 
 }
