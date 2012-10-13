@@ -50,8 +50,7 @@ public class ResearchObjectTest {
     @AfterClass
     public static void tearDownAfterClass() {
         sessionFactory.getCurrentSession().beginTransaction();
-        ResearchObject ro = new ResearchObject();
-        ro.setUri(roURI);
+        ResearchObject ro = new ResearchObject(sessionFactory, roURI);
         ro.delete();
         sessionFactory.getCurrentSession().getTransaction().commit();
     }
@@ -101,7 +100,7 @@ public class ResearchObjectTest {
         sessionFactory.getCurrentSession().getTransaction().commit();
 
         sessionFactory.getCurrentSession().beginTransaction();
-        ResearchObject ro2 = ResearchObject.get(roURI);
+        ResearchObject ro2 = ResearchObject.findByUri(sessionFactory, roURI);
         sessionFactory.getCurrentSession().getTransaction().commit();
         Assert.assertEquals(roURI, ro2.getUri());
         Assert.assertEquals(1, ro2.getDlWorkspaceId());
@@ -126,12 +125,12 @@ public class ResearchObjectTest {
         sessionFactory.getCurrentSession().getTransaction().commit();
 
         sessionFactory.getCurrentSession().beginTransaction();
-        ResearchObject ro2 = ResearchObject.get(roURI);
+        ResearchObject ro2 = ResearchObject.findByUri(sessionFactory, roURI);
         ro2.delete();
         sessionFactory.getCurrentSession().getTransaction().commit();
 
         sessionFactory.getCurrentSession().beginTransaction();
-        ResearchObject ro3 = ResearchObject.get(roURI);
+        ResearchObject ro3 = ResearchObject.findByUri(sessionFactory, roURI);
         Assert.assertNull(ro3);
         sessionFactory.getCurrentSession().getTransaction().commit();
     }

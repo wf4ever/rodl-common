@@ -52,7 +52,7 @@ public class ResearchObject {
     private String id;
 
     /** Hibernate session factory. */
-    private static SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
 
     /**
@@ -73,7 +73,7 @@ public class ResearchObject {
      *            RO URI
      */
     public ResearchObject(SessionFactory sessionFactory, URI uri) {
-        ResearchObject.sessionFactory = sessionFactory;
+        this.sessionFactory = sessionFactory;
         setUri(uri.normalize());
     }
 
@@ -172,15 +172,20 @@ public class ResearchObject {
 
 
     /**
-     * Load a research object or create a new instance.
+     * Load a research object.
      * 
+     * @param sessionFactory
+     *            session factory for this object
      * @param uri
      *            RO URI
      * @return a research object with its URI set and other details loaded, if possible
      */
-    public static ResearchObject get(URI uri) {
+    public static ResearchObject findByUri(SessionFactory sessionFactory, URI uri) {
         Session session = sessionFactory.getCurrentSession();
         ResearchObject researchObject = (ResearchObject) session.get(ResearchObject.class, uri.toString());
+        if (researchObject != null) {
+            researchObject.sessionFactory = sessionFactory;
+        }
         return researchObject;
     }
 
