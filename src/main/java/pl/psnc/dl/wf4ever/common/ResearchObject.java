@@ -74,9 +74,7 @@ public class ResearchObject {
      */
     public ResearchObject(SessionFactory sessionFactory, URI uri) {
         ResearchObject.sessionFactory = sessionFactory;
-        this.uri = uri.normalize();
-        String[] segments = uri.getPath().split("/");
-        this.id = segments[segments.length - 1];
+        setUri(uri.normalize());
     }
 
 
@@ -131,8 +129,14 @@ public class ResearchObject {
     }
 
 
+    /**
+     * Set URI and id.
+     * 
+     * @param uriString
+     *            RO URI as String
+     */
     public void setUriString(String uriString) {
-        this.uri = URI.create(uriString);
+        setUri(URI.create(uriString));
     }
 
 
@@ -142,8 +146,16 @@ public class ResearchObject {
     }
 
 
+    /**
+     * Set the URI, as well as the id.
+     * 
+     * @param uri
+     *            RO URI
+     */
     public void setUri(URI uri) {
         this.uri = uri;
+        String[] segments = uri.getPath().split("/");
+        this.id = segments[segments.length - 1];
     }
 
 
