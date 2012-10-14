@@ -3,7 +3,9 @@ package pl.psnc.dl.wf4ever.common;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
 
 /**
  * Active Record instance, with generic methods for loading, saving and deleting objects.
@@ -45,11 +47,22 @@ public abstract class ActiveRecord implements Serializable {
      *            Active Record class instance
      * @return a list of all objects
      */
-    @SuppressWarnings("unchecked")
     protected static <T extends ActiveRecord> List<T> findAll(Class<T> clazz) {
+        return findByCriteria(clazz);
+    }
+
+
+    /**
+     * Use this inside subclasses as a convenience method.
+     */
+    @SuppressWarnings("unchecked")
+    protected static <T extends ActiveRecord> List<T> findByCriteria(Class<T> clazz, Criterion... criterion) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        List<T> list = session.createCriteria(clazz).list();
-        return list;
+        Criteria crit = session.createCriteria(clazz);
+        for (Criterion c : criterion) {
+            crit.add(c);
+        }
+        return crit.list();
     }
 
 
