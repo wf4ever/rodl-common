@@ -6,6 +6,11 @@ package pl.psnc.dl.wf4ever.common;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -14,6 +19,8 @@ import org.apache.log4j.Logger;
  * @author piotrhol
  * 
  */
+@Entity
+@Table(name = "user_profiles")
 public class UserProfile extends ActiveRecord {
 
     /** id. */
@@ -35,19 +42,27 @@ public class UserProfile extends ActiveRecord {
     private static final Logger LOG = Logger.getLogger(UserProfile.class);
 
     /** User login. */
-    private final String login;
+    private String login;
 
     /** Nice name. */
-    private final String name;
+    private String name;
 
     /** Role. */
-    private final Role role;
+    private Role role;
 
     /** User URI. */
-    private final URI uri;
+    private URI uri;
 
     /** User homepage. */
     private URI homePage;
+
+
+    /**
+     * Constructor.
+     */
+    public UserProfile() {
+
+    }
 
 
     /**
@@ -124,28 +139,65 @@ public class UserProfile extends ActiveRecord {
     }
 
 
+    @Basic
     public URI getHomePage() {
         return homePage;
     }
 
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+
+    @Id
     public String getLogin() {
         return login;
     }
 
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    @Basic
     public String getName() {
         return name;
     }
 
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+
+    @Basic
     public Role getRole() {
         return role;
     }
 
 
+    public void setUri(URI uri) {
+        this.uri = uri;
+    }
+
+
+    @Basic
     public URI getUri() {
         return uri;
+    }
+
+
+    /**
+     * Find by user login.
+     * 
+     * @param login
+     *            user login
+     * @return user profile or null
+     */
+    public static UserProfile findByLogin(String login) {
+        return findByPrimaryKey(UserProfile.class, login);
     }
 
 }

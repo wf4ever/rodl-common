@@ -1,5 +1,11 @@
 package pl.psnc.dl.wf4ever.common;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.joda.time.DateTime;
 
 /**
@@ -8,28 +14,41 @@ import org.joda.time.DateTime;
  * @author piotrhol
  * 
  */
+@Entity
+@Table(name = "resource_infos")
 public class ResourceInfo extends ActiveRecord {
 
     /** id. */
     private static final long serialVersionUID = 6130642871779327154L;
 
+    /** file path. */
+    private String path;
+
     /** file name. */
-    private final String name;
+    private String name;
 
     /** file checksum. */
-    private final String checksum;
+    private String checksum;
 
     /** file checksum method. */
-    private final String digestMethod;
+    private String digestMethod;
 
     /** file size in bytes. */
-    private final long sizeInBytes;
+    private long sizeInBytes;
 
     /** last modification date. */
-    private final DateTime lastModified;
+    private DateTime lastModified;
 
     /** MIME type. */
-    private final String mimeType;
+    private String mimeType;
+
+
+    /**
+     * Constructor.
+     */
+    public ResourceInfo() {
+
+    }
 
 
     /**
@@ -59,32 +78,133 @@ public class ResourceInfo extends ActiveRecord {
     }
 
 
+    /**
+     * Constructor.
+     * 
+     * @param path
+     *            file path
+     * @param name
+     *            file name
+     * @param checksum
+     *            checksum
+     * @param sizeInBytes
+     *            size in bytes
+     * @param digestMethod
+     *            i.e. MD5, SHA1
+     * @param lastModified
+     *            date of last modification
+     * @param mimeType
+     *            MIME type
+     */
+    public ResourceInfo(String path, String name, String checksum, long sizeInBytes, String digestMethod,
+            DateTime lastModified, String mimeType) {
+        this.path = path;
+        this.name = name;
+        this.checksum = checksum;
+        this.sizeInBytes = sizeInBytes;
+        this.digestMethod = digestMethod;
+        this.lastModified = lastModified;
+        this.mimeType = mimeType;
+    }
+
+
+    @Basic
     public String getName() {
         return name;
     }
 
 
+    @Basic
     public String getChecksum() {
         return checksum;
     }
 
 
+    @Basic
     public long getSizeInBytes() {
         return sizeInBytes;
     }
 
 
+    @Basic
     public String getDigestMethod() {
         return digestMethod;
     }
 
 
+    @Transient
     public DateTime getLastModified() {
         return lastModified;
     }
 
 
+    @Basic
+    public long getLastModifiedInMilis() {
+        return lastModified != null ? lastModified.getMillis() : null;
+    }
+
+
+    public void setLastModifiedInMilis(long milis) {
+        lastModified = new DateTime(milis);
+    }
+
+
+    @Basic
     public String getMimeType() {
         return mimeType;
     }
+
+
+    @Id
+    public String getPath() {
+        return path;
+    }
+
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public void setChecksum(String checksum) {
+        this.checksum = checksum;
+    }
+
+
+    public void setDigestMethod(String digestMethod) {
+        this.digestMethod = digestMethod;
+    }
+
+
+    public void setSizeInBytes(long sizeInBytes) {
+        this.sizeInBytes = sizeInBytes;
+    }
+
+
+    public void setLastModified(DateTime lastModified) {
+        this.lastModified = lastModified;
+    }
+
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+
+    /**
+     * Find by file path.
+     * 
+     * @param path
+     *            file path
+     * @return resource info or null
+     */
+    public static ResourceInfo findByPath(String path) {
+        return findByPrimaryKey(ResourceInfo.class, path);
+    }
+
 }
