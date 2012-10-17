@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.log4j.Logger;
 
@@ -183,9 +184,20 @@ public class UserProfile extends ActiveRecord {
     }
 
 
-    @Basic
+    @Transient
     public URI getUri() {
         return uri;
+    }
+
+
+    public void setUriString(String uri) {
+        this.uri = URI.create(uri);
+    }
+
+
+    @Basic
+    public String getUriString() {
+        return uri != null ? uri.toString() : null;
     }
 
 
