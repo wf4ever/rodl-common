@@ -14,7 +14,11 @@ import org.apache.log4j.Logger;
  * @author piotrhol
  * 
  */
-public class UserProfile {
+public class UserProfile extends ActiveRecord {
+
+    /** id. */
+    private static final long serialVersionUID = -4468344863067565271L;
+
 
     /** Simple user privileges model. */
     public enum Role {

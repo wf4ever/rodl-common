@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pl.psnc.dl.wf4ever</groupId>
 	<artifactId>rodl-common</artifactId>
-	<version>0.2.1-SNAPSHOT</version>
+	<version>0.2.1-experimental-SNAPSHOT</version>
 	<name>RODL common</name>
 	<description>Components shared by all RODL libraries</description>
 	<inceptionYear>2010</inceptionYear>

@@ -8,7 +8,10 @@ import org.joda.time.DateTime;
  * @author piotrhol
  * 
  */
-public class ResourceInfo {
+public class ResourceInfo extends ActiveRecord {
+
+    /** id. */
+    private static final long serialVersionUID = 6130642871779327154L;
 
     /** file name. */
     private final String name;
