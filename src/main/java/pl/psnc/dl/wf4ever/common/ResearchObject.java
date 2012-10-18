@@ -56,7 +56,7 @@ public class ResearchObject extends ActiveRecord {
     /**
      * Constructor.
      */
-    public ResearchObject() {
+    private ResearchObject() {
 
     }
 
@@ -67,8 +67,23 @@ public class ResearchObject extends ActiveRecord {
      * @param uri
      *            RO URI
      */
-    public ResearchObject(URI uri) {
+    private ResearchObject(URI uri) {
+        ResearchObject r = ResearchObject.findByUri(uri);
         setUri(uri.normalize());
+    }
+
+
+    public static ResearchObject create() {
+        return new ResearchObject();
+    }
+
+
+    public static ResearchObject create(URI uri) {
+        ResearchObject result = ActiveRecord.create(ResearchObject.class, uri.toString());
+        if (result == null) {
+            return new ResearchObject(uri);
+        }
+        return result;
     }
 
 
