@@ -19,6 +19,16 @@ public abstract class ActiveRecord implements Serializable {
     private static final long serialVersionUID = 258330617173783552L;
 
 
+    @SuppressWarnings("unchecked")
+    public static <T extends ActiveRecord> T create(Class<T> clazz, Serializable id) {
+        T result;
+        if ((result = findByPrimaryKey(clazz, id)) != null) {
+            return result;
+        }
+        return null;
+    }
+
+
     /**
      * Load an object.
      * 

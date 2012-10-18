@@ -49,14 +49,11 @@ public class ResearchObject extends ActiveRecord {
     /** RO edition id in dLibra, default is 0. */
     private long dlEditionId = 0;
 
-    /** id used in dLibra as a name. */
-    private String id;
-
 
     /**
      * Constructor.
      */
-    public ResearchObject() {
+    private ResearchObject() {
 
     }
 
@@ -67,8 +64,23 @@ public class ResearchObject extends ActiveRecord {
      * @param uri
      *            RO URI
      */
-    public ResearchObject(URI uri) {
+    private ResearchObject(URI uri) {
+        ResearchObject r = ResearchObject.findByUri(uri);
         setUri(uri.normalize());
+    }
+
+
+    public static ResearchObject create() {
+        return new ResearchObject();
+    }
+
+
+    public static ResearchObject create(URI uri) {
+        ResearchObject result = ActiveRecord.create(ResearchObject.class, uri.toString());
+        if (result == null) {
+            return new ResearchObject(uri);
+        }
+        return result;
     }
 
 
@@ -140,28 +152,14 @@ public class ResearchObject extends ActiveRecord {
     }
 
 
-    /**
-     * Set the URI, as well as the id.
-     * 
-     * @param uri
-     *            RO URI
-     */
     public void setUri(URI uri) {
         this.uri = uri;
-        String[] segments = uri.getPath().split("/");
-        this.id = segments[segments.length - 1];
     }
 
 
     @Transient
     public URI getManifestUri() {
         return uri != null ? uri.resolve(MANIFEST_PATH) : null;
-    }
-
-
-    @Transient
-    public String getId() {
-        return id;
     }
 
 
