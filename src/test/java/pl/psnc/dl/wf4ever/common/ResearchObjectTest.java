@@ -39,7 +39,6 @@ public class ResearchObjectTest {
         ResearchObject ro = new ResearchObject();
         Assert.assertNull(ro.getUri());
         Assert.assertNull(ro.getManifestUri());
-        Assert.assertNull(ro.getId());
         Assert.assertEquals(0, ro.getDlWorkspaceId());
         Assert.assertEquals(0, ro.getDlROId());
         Assert.assertEquals(0, ro.getDlROVersionId());
@@ -55,7 +54,6 @@ public class ResearchObjectTest {
         ResearchObject ro = new ResearchObject();
         ro.setUri(roURI);
         Assert.assertEquals(roURI, ro.getUri());
-        Assert.assertEquals("foobar", ro.getId());
         Assert.assertEquals(roURI.resolve(".ro/manifest.rdf"), ro.getManifestUri());
     }
 
