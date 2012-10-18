@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "research_objects")
-public class ResearchObject extends ActiveRecord {
+public final class ResearchObject extends ActiveRecord {
 
     /** id. */
     private static final long serialVersionUID = 9168888879916459732L;
@@ -65,16 +65,17 @@ public class ResearchObject extends ActiveRecord {
      *            RO URI
      */
     private ResearchObject(URI uri) {
-        ResearchObject r = ResearchObject.findByUri(uri);
         setUri(uri.normalize());
     }
 
 
-    public static ResearchObject create() {
-        return new ResearchObject();
-    }
-
-
+    /**
+     * Load from database or create a new instance.
+     * 
+     * @param uri
+     *            RO URI
+     * @return an instance
+     */
     public static ResearchObject create(URI uri) {
         ResearchObject result = ActiveRecord.create(ResearchObject.class, uri.toString());
         if (result == null) {
