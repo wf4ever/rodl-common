@@ -63,12 +63,12 @@ public class ResearchObjectTest {
      */
     @Test
     public void testSaveLoad() {
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ResearchObject ro = ResearchObject.create(roURI);
         ro.setDlWorkspaceId(1);
         ro.setDlROId(2);
         ro.setDlROVersionId(3);
         ro.setDlEditionId(4);
-        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ro.save();
         HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 
@@ -88,12 +88,12 @@ public class ResearchObjectTest {
      */
     @Test
     public void testDelete() {
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ResearchObject ro = ResearchObject.create(roURI);
         ro.setDlWorkspaceId(1);
         ro.setDlROId(2);
         ro.setDlROVersionId(3);
         ro.setDlEditionId(4);
-        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ro.save();
         HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 
