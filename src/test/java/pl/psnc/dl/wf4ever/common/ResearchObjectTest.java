@@ -25,7 +25,7 @@ public class ResearchObjectTest {
     @AfterClass
     public static void tearDownAfterClass() {
         HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
-        ResearchObject ro = new ResearchObject(roURI);
+        ResearchObject ro = ResearchObject.create(roURI);
         ro.delete();
         HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
     }
@@ -36,7 +36,7 @@ public class ResearchObjectTest {
      */
     @Test
     public void testInit() {
-        ResearchObject ro = new ResearchObject();
+        ResearchObject ro = ResearchObject.create();
         Assert.assertNull(ro.getUri());
         Assert.assertNull(ro.getManifestUri());
         Assert.assertEquals(0, ro.getDlWorkspaceId());
@@ -51,7 +51,7 @@ public class ResearchObjectTest {
      */
     @Test
     public void testUri() {
-        ResearchObject ro = new ResearchObject();
+        ResearchObject ro = ResearchObject.create();
         ro.setUri(roURI);
         Assert.assertEquals(roURI, ro.getUri());
         Assert.assertEquals(roURI.resolve(".ro/manifest.rdf"), ro.getManifestUri());
@@ -63,7 +63,7 @@ public class ResearchObjectTest {
      */
     @Test
     public void testSaveLoad() {
-        ResearchObject ro = new ResearchObject(roURI);
+        ResearchObject ro = ResearchObject.create(roURI);
         ro.setDlWorkspaceId(1);
         ro.setDlROId(2);
         ro.setDlROVersionId(3);
@@ -88,7 +88,7 @@ public class ResearchObjectTest {
      */
     @Test
     public void testDelete() {
-        ResearchObject ro = new ResearchObject(roURI);
+        ResearchObject ro = ResearchObject.create(roURI);
         ro.setDlWorkspaceId(1);
         ro.setDlROId(2);
         ro.setDlROVersionId(3);
