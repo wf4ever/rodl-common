@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "user_profiles")
-public class UserProfile extends ActiveRecord {
+public final class UserProfile extends ActiveRecord {
 
     /** id. */
     private static final long serialVersionUID = -4468344863067565271L;
@@ -61,7 +61,7 @@ public class UserProfile extends ActiveRecord {
     /**
      * Constructor.
      */
-    public UserProfile() {
+    private UserProfile() {
 
     }
 
@@ -78,7 +78,7 @@ public class UserProfile extends ActiveRecord {
      * @param uri
      *            uri
      */
-    public UserProfile(String login, String name, Role role, URI uri) {
+    private UserProfile(String login, String name, Role role, URI uri) {
         super();
         this.login = login;
         this.name = name;
@@ -97,8 +97,47 @@ public class UserProfile extends ActiveRecord {
      * @param role
      *            role
      */
-    public UserProfile(String login, String name, Role role) {
+    private UserProfile(String login, String name, Role role) {
         this(login, name, role, null);
+    }
+
+
+    /**
+     * Load instance from database or create a new one.
+     * 
+     * @param login
+     *            login
+     * @param name
+     *            name
+     * @param role
+     *            role
+     * @param uri
+     *            uri
+     * @return an instance
+     */
+    public static UserProfile create(String login, String name, Role role, URI uri) {
+        UserProfile user = findByLogin(login);
+        if (user == null) {
+            return new UserProfile(login, name, role, uri);
+        } else {
+            return user;
+        }
+    }
+
+
+    /**
+     * Load instance from database or create a new one.
+     * 
+     * @param login
+     *            login
+     * @param name
+     *            name
+     * @param role
+     *            role
+     * @return an instance
+     */
+    public static UserProfile create(String login, String name, Role role) {
+        return create(login, name, role, null);
     }
 
 

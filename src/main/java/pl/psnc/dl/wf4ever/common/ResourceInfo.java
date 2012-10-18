@@ -16,7 +16,7 @@ import org.joda.time.DateTime;
  */
 @Entity
 @Table(name = "resource_infos")
-public class ResourceInfo extends ActiveRecord {
+public final class ResourceInfo extends ActiveRecord {
 
     /** id. */
     private static final long serialVersionUID = 6130642871779327154L;
@@ -46,35 +46,8 @@ public class ResourceInfo extends ActiveRecord {
     /**
      * Constructor.
      */
-    public ResourceInfo() {
+    private ResourceInfo() {
 
-    }
-
-
-    /**
-     * Constructor.
-     * 
-     * @param name
-     *            file name
-     * @param checksum
-     *            checksum
-     * @param sizeInBytes
-     *            size in bytes
-     * @param digestMethod
-     *            i.e. MD5, SHA1
-     * @param lastModified
-     *            date of last modification
-     * @param mimeType
-     *            MIME type
-     */
-    public ResourceInfo(String name, String checksum, long sizeInBytes, String digestMethod, DateTime lastModified,
-            String mimeType) {
-        this.name = name;
-        this.checksum = checksum;
-        this.sizeInBytes = sizeInBytes;
-        this.digestMethod = digestMethod;
-        this.lastModified = lastModified;
-        this.mimeType = mimeType;
     }
 
 
@@ -96,7 +69,7 @@ public class ResourceInfo extends ActiveRecord {
      * @param mimeType
      *            MIME type
      */
-    public ResourceInfo(String path, String name, String checksum, long sizeInBytes, String digestMethod,
+    private ResourceInfo(String path, String name, String checksum, long sizeInBytes, String digestMethod,
             DateTime lastModified, String mimeType) {
         this.path = path;
         this.name = name;
@@ -105,6 +78,36 @@ public class ResourceInfo extends ActiveRecord {
         this.digestMethod = digestMethod;
         this.lastModified = lastModified;
         this.mimeType = mimeType;
+    }
+
+
+    /**
+     * Load an instance or create a new one.
+     * 
+     * @param path
+     *            file path
+     * @param name
+     *            file name
+     * @param checksum
+     *            checksum
+     * @param sizeInBytes
+     *            size in bytes
+     * @param digestMethod
+     *            i.e. MD5, SHA1
+     * @param lastModified
+     *            date of last modification
+     * @param mimeType
+     *            MIME type
+     * @return an instance
+     */
+    public static ResourceInfo create(String path, String name, String checksum, long sizeInBytes, String digestMethod,
+            DateTime lastModified, String mimeType) {
+        ResourceInfo res = findByPath(path);
+        if (res == null) {
+            return new ResourceInfo(path, name, checksum, sizeInBytes, digestMethod, lastModified, mimeType);
+        } else {
+            return res;
+        }
     }
 
 
