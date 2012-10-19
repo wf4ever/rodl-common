@@ -17,6 +17,28 @@ public class FolderEntry {
     private String entryName;
 
 
+    /**
+     * Default constructor.
+     */
+    public FolderEntry() {
+
+    }
+
+
+    /**
+     * Constructor.
+     * 
+     * @param proxyFor
+     *            URI of resource aggregated in the ro:Folder
+     * @param entryName
+     *            name of the resource in the folder
+     */
+    public FolderEntry(URI proxyFor, String entryName) {
+        this.proxyFor = proxyFor;
+        this.entryName = entryName;
+    }
+
+
     public URI getProxyFor() {
         return proxyFor;
     }
