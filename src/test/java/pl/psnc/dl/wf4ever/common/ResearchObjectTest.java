@@ -36,14 +36,15 @@ public class ResearchObjectTest {
      */
     @Test
     public void testInit() {
-        ResearchObject ro = ResearchObject.create();
-        Assert.assertNull(ro.getUri());
-        Assert.assertNull(ro.getManifestUri());
-        Assert.assertNull(ro.getId());
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+        ResearchObject ro = ResearchObject.create(roURI);
+        Assert.assertNotNull(ro.getUri());
+        Assert.assertNotNull(ro.getManifestUri());
         Assert.assertEquals(0, ro.getDlWorkspaceId());
         Assert.assertEquals(0, ro.getDlROId());
         Assert.assertEquals(0, ro.getDlROVersionId());
         Assert.assertEquals(0, ro.getDlEditionId());
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
     }
 
 
@@ -52,11 +53,11 @@ public class ResearchObjectTest {
      */
     @Test
     public void testUri() {
-        ResearchObject ro = ResearchObject.create();
-        ro.setUri(roURI);
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+        ResearchObject ro = ResearchObject.create(roURI);
         Assert.assertEquals(roURI, ro.getUri());
-        Assert.assertEquals("foobar", ro.getId());
         Assert.assertEquals(roURI.resolve(".ro/manifest.rdf"), ro.getManifestUri());
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
     }
 
 
@@ -65,12 +66,12 @@ public class ResearchObjectTest {
      */
     @Test
     public void testSaveLoad() {
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ResearchObject ro = ResearchObject.create(roURI);
         ro.setDlWorkspaceId(1);
         ro.setDlROId(2);
         ro.setDlROVersionId(3);
         ro.setDlEditionId(4);
-        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ro.save();
         HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 
@@ -90,12 +91,12 @@ public class ResearchObjectTest {
      */
     @Test
     public void testDelete() {
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ResearchObject ro = ResearchObject.create(roURI);
         ro.setDlWorkspaceId(1);
         ro.setDlROId(2);
         ro.setDlROVersionId(3);
         ro.setDlEditionId(4);
-        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ro.save();
         HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 

@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "research_objects")
-public class ResearchObject extends ActiveRecord {
+public final class ResearchObject extends ActiveRecord {
 
     /** id. */
     private static final long serialVersionUID = 9168888879916459732L;
@@ -49,9 +49,6 @@ public class ResearchObject extends ActiveRecord {
     /** RO edition id in dLibra, default is 0. */
     private long dlEditionId = 0;
 
-    /** id used in dLibra as a name. */
-    private String id;
-
 
     /**
      * Constructor.
@@ -72,13 +69,15 @@ public class ResearchObject extends ActiveRecord {
     }
 
 
-    public static ResearchObject create() {
-        return new ResearchObject();
-    }
-
-
+    /**
+     * Load from database or create a new instance.
+     * 
+     * @param uri
+     *            RO URI
+     * @return an instance
+     */
     public static ResearchObject create(URI uri) {
-        ResearchObject result = ActiveRecord.findByPrimaryKey(ResearchObject.class, uri.toString());
+        ResearchObject result = findByUri(uri);
         if (result == null) {
             return new ResearchObject(uri);
         }
@@ -154,28 +153,14 @@ public class ResearchObject extends ActiveRecord {
     }
 
 
-    /**
-     * Set the URI, as well as the id.
-     * 
-     * @param uri
-     *            RO URI
-     */
     public void setUri(URI uri) {
         this.uri = uri;
-        String[] segments = uri.getPath().split("/");
-        this.id = segments[segments.length - 1];
     }
 
 
     @Transient
     public URI getManifestUri() {
         return uri != null ? uri.resolve(MANIFEST_PATH) : null;
-    }
-
-
-    @Transient
-    public String getId() {
-        return id;
     }
 
 
