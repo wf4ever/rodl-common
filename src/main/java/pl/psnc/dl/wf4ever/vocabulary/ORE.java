@@ -19,5 +19,6 @@ public class ORE {
     public static final Property proxyIn = ontModel.getProperty(NAMESPACE + "proxyIn");
     public static final Property proxyFor = ontModel.getProperty(NAMESPACE + "proxyFor");
     public static final OntClass Aggregation = ontModel.getOntClass(NAMESPACE + "Aggregation");
+    public static final Property isAggregatedBy = ontModel.getProperty(NAMESPACE + "isAggregatedBy");
 
 }

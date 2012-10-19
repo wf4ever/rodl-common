@@ -46,7 +46,7 @@ public class Folder {
      * 
      * @return RDF graph URI or null if folder URI is null
      */
-    public URI getFolderManifestUri() {
+    public URI getResourceMapUri() {
         if (uri == null) {
             return null;
         }
