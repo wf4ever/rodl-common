@@ -68,7 +68,6 @@ public class ResearchObject extends ActiveRecord {
      *            RO URI
      */
     private ResearchObject(URI uri) {
-        ResearchObject r = ResearchObject.findByUri(uri);
         setUri(uri.normalize());
     }
 
@@ -79,7 +78,7 @@ public class ResearchObject extends ActiveRecord {
 
 
     public static ResearchObject create(URI uri) {
-        ResearchObject result = ActiveRecord.create(ResearchObject.class, uri.toString());
+        ResearchObject result = ActiveRecord.findByPrimaryKey(ResearchObject.class, uri.toString());
         if (result == null) {
             return new ResearchObject(uri);
         }
