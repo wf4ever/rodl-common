@@ -13,12 +13,26 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Statement;
 
+/**
+ * Simple model of ao:annotation.
+ * 
+ * @author pejot
+ * 
+ */
 public class Annotation extends Resource {
 
+    /** List of resources annotated by this. */
     private List<Resource> annotated;
+    /** The annotation body. */
     private AnnotationBody body;
 
 
+    /**
+     * Constructor.
+     * 
+     * @param uri
+     *            the resource uri
+     */
     public Annotation(URI uri) {
         super(uri);
         annotated = new ArrayList<Resource>();
@@ -26,19 +40,40 @@ public class Annotation extends Resource {
     }
 
 
-    public Annotation(URI uri, OntModel model) {
+    /**
+     * Constructor.
+     * 
+     * @param uri
+     *            the resource uri
+     * @param model
+     *            the ontology model(for example manifest model)
+     * @throws URISyntaxException
+     *             annotated resource uri parse error
+     */
+    public Annotation(URI uri, OntModel model)
+            throws URISyntaxException {
         this(uri);
         annotated = new ArrayList<Resource>();
         fillUp(model);
     }
 
 
-    public void fillUp(OntModel model) {
+    /**
+     * Take body and annotated list from ontology model.
+     * 
+     * @param model
+     *            the ontology model(for example manifest model)
+     * @throws URISyntaxException
+     *             annotated resource uri
+     */
+    public void fillUp(OntModel model)
+            throws URISyntaxException {
         Individual source = model.getIndividual(uri.toString());
         for (Statement statement : source.listProperties(RO.annotatesAggregatedResource).toList()) {
             try {
                 annotated.add(new Resource(new URI(statement.getObject().asResource().getURI())));
             } catch (URISyntaxException e) {
+                throw e;
             }
         }
         try {
@@ -47,11 +82,18 @@ public class Annotation extends Resource {
             body = null;
         }
     }
-    
+
+
     public List<Resource> getAnnotated() {
         return annotated;
     }
-    
+
+
+    /**
+     * Get the list of annotated uri.
+     * 
+     * @return getAnnotated
+     */
     public List<URI> getAnnotatedToURIList() {
         List<URI> result = new ArrayList<URI>();
         for (Resource r : annotated) {
@@ -59,7 +101,8 @@ public class Annotation extends Resource {
         }
         return result;
     }
-    
+
+
     public AnnotationBody getBody() {
         return body;
     }
