@@ -77,7 +77,7 @@ public final class ResearchObject extends ActiveRecord {
      * @return an instance
      */
     public static ResearchObject create(URI uri) {
-        ResearchObject result = ActiveRecord.create(ResearchObject.class, uri.toString());
+        ResearchObject result = findByUri(uri);
         if (result == null) {
             return new ResearchObject(uri);
         }

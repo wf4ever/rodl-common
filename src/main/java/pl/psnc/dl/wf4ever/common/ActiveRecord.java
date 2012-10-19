@@ -19,16 +19,6 @@ public abstract class ActiveRecord implements Serializable {
     private static final long serialVersionUID = 258330617173783552L;
 
 
-    @SuppressWarnings("unchecked")
-    public static <T extends ActiveRecord> T create(Class<T> clazz, Serializable id) {
-        T result;
-        if ((result = findByPrimaryKey(clazz, id)) != null) {
-            return result;
-        }
-        return null;
-    }
-
-
     /**
      * Load an object.
      * 
@@ -64,6 +54,14 @@ public abstract class ActiveRecord implements Serializable {
 
     /**
      * Use this inside subclasses as a convenience method.
+     * 
+     * @param <T>
+     *            class of DAO to be returned
+     * @param clazz
+     *            class instance of DAO to be returned
+     * @param criterion
+     *            criteria for the search
+     * @return list of DAOs
      */
     @SuppressWarnings("unchecked")
     protected static <T extends ActiveRecord> List<T> findByCriteria(Class<T> clazz, Criterion... criterion) {
