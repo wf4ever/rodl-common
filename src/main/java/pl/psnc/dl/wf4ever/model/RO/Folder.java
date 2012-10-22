@@ -10,23 +10,10 @@ import java.util.List;
  * @author piotrekhol
  * 
  */
-public class Folder {
-
-    /** folder URI. */
-    private URI uri;
+public class Folder extends Resource {
 
     /** folder entries. */
     private List<FolderEntry> folderEntries = new ArrayList<>();
-
-
-    public URI getUri() {
-        return uri;
-    }
-
-
-    public void setUri(URI uri) {
-        this.uri = uri;
-    }
 
 
     public List<FolderEntry> getFolderEntries() {
