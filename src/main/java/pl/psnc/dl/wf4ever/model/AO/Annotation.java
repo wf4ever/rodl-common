@@ -13,12 +13,26 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Statement;
 
+/**
+ * Simple ao:annotation model.
+ * 
+ * @author pejot
+ */
 public class Annotation extends Resource {
 
+    /** List of annotated objects. */
     private List<Resource> annotated;
+
+    /** The annotation body. */
     private AnnotationBody body;
 
 
+    /**
+     * Constructor.
+     * 
+     * @param uri
+     *            The resource uri
+     */
     public Annotation(URI uri) {
         super(uri);
         annotated = new ArrayList<Resource>();
@@ -26,6 +40,14 @@ public class Annotation extends Resource {
     }
 
 
+    /**
+     * Constructor.
+     * 
+     * @param uri
+     *            The resource uri
+     * @param model
+     *            Ontology model
+     */
     public Annotation(URI uri, OntModel model) {
         this(uri);
         annotated = new ArrayList<Resource>();
@@ -33,12 +55,19 @@ public class Annotation extends Resource {
     }
 
 
-    public void fillUp(OntModel model) {
+    /**
+     * Filling up annotated list and body field.
+     * 
+     * @param model
+     *            onthology model
+     */
+    private void fillUp(OntModel model) {
         Individual source = model.getIndividual(uri.toString());
         for (Statement statement : source.listProperties(RO.annotatesAggregatedResource).toList()) {
             try {
                 annotated.add(new Resource(new URI(statement.getObject().asResource().getURI())));
             } catch (URISyntaxException e) {
+                continue;
             }
         }
         try {
@@ -47,11 +76,18 @@ public class Annotation extends Resource {
             body = null;
         }
     }
-    
+
+
     public List<Resource> getAnnotated() {
         return annotated;
     }
-    
+
+
+    /**
+     * Get the list of annotated resources as a list of uri.
+     * 
+     * @return list of uri of annotated resources
+     */
     public List<URI> getAnnotatedToURIList() {
         List<URI> result = new ArrayList<URI>();
         for (Resource r : annotated) {
@@ -59,7 +95,8 @@ public class Annotation extends Resource {
         }
         return result;
     }
-    
+
+
     public AnnotationBody getBody() {
         return body;
     }
