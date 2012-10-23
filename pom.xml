@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pl.psnc.dl.wf4ever</groupId>
 	<artifactId>rodl-common</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.3.0</version>
 	<name>RODL common</name>
 	<description>Components shared by all RODL libraries</description>
 	<inceptionYear>2010</inceptionYear>
@@ -71,11 +70,20 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.3.2</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<scm>
 		<developerConnection>scm:git:git@github.com:wf4ever/rodl-common.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>rodl-common-0.3.0</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
