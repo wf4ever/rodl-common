@@ -58,6 +58,11 @@
 			<artifactId>guava</artifactId>
 			<version>11.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-api</artifactId>
+			<version>2.6.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -114,4 +119,11 @@
 			</build>
 		</profile>
 	</profiles>
+	<repositories>
+		<repository>
+			<id>openrdf</id>
+			<name>OpenRDF</name>
+			<url>http://repo.aduna-software.org/maven2/releases/</url>
+		</repository>
+	</repositories>
 </project>

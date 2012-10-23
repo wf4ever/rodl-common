@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openrdf.rio.RDFFormat;
+
 /**
  * ro:Folder.
  * 
@@ -28,19 +30,38 @@ public class Folder extends Resource {
 
     /**
      * Return a URI of an RDF graph that describes the folder. If folder URI is null, return null. If folder URI path is
-     * empty, return folder.ttl (i.e. example.com becomes example.com/folder.ttl). Otherwise use the last path segment
-     * (i.e. example.com/foobar/ becomes example.com/foobar/foobar.ttl). Turtle file extension is used.
+     * empty, return folder.ttl (i.e. example.com becomes example.com/folder.rdf). Otherwise use the last path segment
+     * (i.e. example.com/foobar/ becomes example.com/foobar/foobar.rdf). RDF/XML file extension is used.
      * 
      * @return RDF graph URI or null if folder URI is null
      */
     public URI getResourceMapUri() {
+        return getResourceMapUri(null);
+    }
+
+
+    /**
+     * Return the URI of resource map in a selected RDF format.
+     * 
+     * @param format
+     *            RDF format
+     * @return resource map URI or null if folder URI is null
+     */
+    public URI getResourceMapUri(RDFFormat format) {
         if (uri == null) {
             return null;
         }
+        String base;
         if (uri.getPath() == null) {
-            return uri.resolve("folder.ttl");
+            base = "folder";
+        } else {
+            String[] segments = uri.getPath().split("/");
+            base = segments[segments.length - 1];
         }
-        String[] segments = uri.getPath().split("/");
-        return uri.resolve(segments[segments.length - 1] + ".ttl");
+        if (format == null || format.equals(RDFFormat.RDFXML)) {
+            return uri.resolve(base + ".rdf");
+        } else {
+            return uri.resolve(base + "." + format.getDefaultFileExtension() + "?original=" + base + ".rdf");
+        }
     }
 }
