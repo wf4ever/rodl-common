@@ -6,7 +6,7 @@ import java.net.URI;
  * ro:Resource.
  * 
  * @author piotrekhol
- * 
+ * @author pejot
  */
 public class Resource {
 
