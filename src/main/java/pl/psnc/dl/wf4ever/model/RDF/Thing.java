@@ -60,4 +60,10 @@ public class Thing {
         return that.uri.equals(this.uri);
     }
 
+
+    @Override
+    public String toString() {
+        return getUri().toString();
+    }
+
 }
