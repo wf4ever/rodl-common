@@ -2,16 +2,15 @@ package pl.psnc.dl.wf4ever.model.RO;
 
 import java.net.URI;
 
+import pl.psnc.dl.wf4ever.model.ORE.AggregatedResource;
+
 /**
  * ro:Resource.
  * 
  * @author piotrekhol
  * @author pejot
  */
-public class Resource {
-
-    /** resource URI. */
-    protected URI uri;
+public class Resource extends AggregatedResource {
 
     /** URI of a proxy of this resource. */
     protected URI proxyUri;
@@ -21,6 +20,7 @@ public class Resource {
      * Constructor.
      */
     public Resource() {
+        super();
     }
 
 
@@ -28,20 +28,10 @@ public class Resource {
      * Constructor.
      * 
      * @param uri
-     *            resource URI
+     *            URI
      */
     public Resource(URI uri) {
-        this.uri = uri;
-    }
-
-
-    public URI getUri() {
-        return uri;
-    }
-
-
-    public void setUri(URI uri) {
-        this.uri = uri;
+        super(uri);
     }
 
 

@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.psnc.dl.wf4ever.model.ORE.AggregatedResource;
 import pl.psnc.dl.wf4ever.model.RO.Resource;
 import pl.psnc.dl.wf4ever.vocabulary.AO;
 import pl.psnc.dl.wf4ever.vocabulary.RO;
@@ -18,7 +19,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
  * 
  * @author pejot
  */
-public class Annotation extends Resource {
+public class Annotation extends AggregatedResource {
 
     /** List of annotated objects. */
     private List<Resource> annotated;

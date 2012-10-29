@@ -2,29 +2,25 @@ package pl.psnc.dl.wf4ever.model.RO;
 
 import java.net.URI;
 
+import pl.psnc.dl.wf4ever.model.ORE.Proxy;
+
 /**
  * Represents an ro:FolderEntry.
  * 
  * @author piotrekhol
  * 
  */
-public class FolderEntry {
-
-    /** folder entry URI. */
-    private URI uri;
-
-    /** URI of resource aggregated in the ro:Folder. */
-    private URI proxyFor;
+public class FolderEntry extends Proxy {
 
     /** Name of the resource in the folder. */
-    private String entryName;
+    protected String entryName;
 
 
     /**
      * Default constructor.
      */
     public FolderEntry() {
-
+        super();
     }
 
 
@@ -37,18 +33,9 @@ public class FolderEntry {
      *            name of the resource in the folder
      */
     public FolderEntry(URI proxyFor, String entryName) {
+        super();
         this.proxyFor = proxyFor;
         this.entryName = entryName;
-    }
-
-
-    public URI getProxyFor() {
-        return proxyFor;
-    }
-
-
-    public void setProxyFor(URI proxyFor) {
-        this.proxyFor = proxyFor;
     }
 
 
@@ -61,13 +48,4 @@ public class FolderEntry {
         this.entryName = entryName;
     }
 
-
-    public URI getUri() {
-        return uri;
-    }
-
-
-    public void setUri(URI uri) {
-        this.uri = uri;
-    }
 }
