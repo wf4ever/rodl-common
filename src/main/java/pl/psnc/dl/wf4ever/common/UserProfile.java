@@ -39,6 +39,14 @@ public final class UserProfile extends ActiveRecord {
     }
 
 
+    /** A profile representing the admin. */
+    public static final UserProfile ADMIN = new UserProfile("admin", "admin", Role.ADMIN,
+            URI.create("http://example.org/admin"));
+
+    /** A profile representing an anonymous user. */
+    public static final UserProfile PUBLIC = new UserProfile("public", "public user", Role.PUBLIC,
+            URI.create("http://example.org/public"));
+
     /** Logger. */
     private static final Logger LOG = Logger.getLogger(UserProfile.class);
 
