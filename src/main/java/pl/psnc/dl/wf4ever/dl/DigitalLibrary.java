@@ -5,7 +5,6 @@ package pl.psnc.dl.wf4ever.dl;
 
 import java.io.InputStream;
 import java.net.URI;
-import java.util.List;
 
 import pl.psnc.dl.wf4ever.common.ResearchObject;
 import pl.psnc.dl.wf4ever.common.ResourceInfo;
@@ -46,23 +45,6 @@ public interface DigitalLibrary {
      *             dLibra exception
      */
     UserProfile getUserProfile(String login)
-            throws DigitalLibraryException, NotFoundException;
-
-
-    /**
-     * Get paths relative to RO of all stored content inside a specified folder.
-     * 
-     * @param ro
-     *            research object
-     * @param folder
-     *            folder path or null
-     * @return a list of paths
-     * @throws DigitalLibraryException
-     *             dLibra error
-     * @throws NotFoundException
-     *             research object not found
-     */
-    List<String> getResourcePaths(ResearchObject ro, String folder)
             throws DigitalLibraryException, NotFoundException;
 
 
