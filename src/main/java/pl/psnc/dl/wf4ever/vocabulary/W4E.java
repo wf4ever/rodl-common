@@ -2,6 +2,8 @@ package pl.psnc.dl.wf4ever.vocabulary;
 
 import java.net.URI;
 
+import org.apache.log4j.Logger;
+
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.Syntax;
@@ -11,14 +13,27 @@ import com.hp.hpl.jena.vocabulary.DCTerms;
 
 public class W4E {
 
+    /** Logger. */
+    private static final Logger LOG = Logger.getLogger(W4E.class);
     public static final String DEFAULT_MANIFEST_PATH = ".ro/manifest.rdf";
-    
+
     public static final Syntax sparqlSyntax = Syntax.syntaxARQ;
     public static final URI DEFAULT_NAMED_GRAPH_URI = URI.create("sms");
     public static final PrefixMapping standardNamespaces = PrefixMapping.Factory.create()
             .setNsPrefix("ore", ORE.NAMESPACE).setNsPrefix("ro", RO.NAMESPACE).setNsPrefix("roevo", ROEVO.NAMESPACE)
             .setNsPrefix("dcterms", DCTerms.NS).setNsPrefix("foaf", FOAF.NAMESPACE).lock();
     public static final OntModel defaultModel = ModelFactory.createOntologyModel(
-        new OntModelSpec(OntModelSpec.OWL_MEM),
-        ModelFactory.createDefaultModel().read(RO.NAMESPACE).read(ROEVO.NAMESPACE));
+        new OntModelSpec(OntModelSpec.OWL_MEM), ModelFactory.createDefaultModel());
+    static {
+        try {
+            defaultModel.read(RO.NAMESPACE);
+        } catch (Exception e) {
+            LOG.error("Could not read RO model", e);
+        }
+        try {
+            defaultModel.read(ROEVO.NAMESPACE);
+        } catch (Exception e) {
+            LOG.error("Could not read ROEVO model", e);
+        }
+    }
 }
