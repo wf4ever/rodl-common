@@ -33,8 +33,12 @@ public abstract class ActiveRecord implements Serializable {
     @SuppressWarnings("unchecked")
     protected static <T extends ActiveRecord> T findByPrimaryKey(Class<T> clazz, Serializable id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        T activeRecord = (T) session.get(clazz, id);
-        return activeRecord;
+        if (session.getTransaction().isActive()) {
+            T activeRecord = (T) session.get(clazz, id);
+            return activeRecord;
+        } else {
+            return null;
+        }
     }
 
 

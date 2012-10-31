@@ -36,7 +36,6 @@ public class ResearchObjectTest {
      */
     @Test
     public void testInit() {
-        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ResearchObject ro = ResearchObject.create(roURI);
         Assert.assertNotNull(ro.getUri());
         Assert.assertNotNull(ro.getManifestUri());
@@ -44,7 +43,6 @@ public class ResearchObjectTest {
         Assert.assertEquals(0, ro.getDlROId());
         Assert.assertEquals(0, ro.getDlROVersionId());
         Assert.assertEquals(0, ro.getDlEditionId());
-        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
     }
 
 
@@ -53,11 +51,9 @@ public class ResearchObjectTest {
      */
     @Test
     public void testUri() {
-        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         ResearchObject ro = ResearchObject.create(roURI);
         Assert.assertEquals(roURI, ro.getUri());
         Assert.assertEquals(roURI.resolve(".ro/manifest.rdf"), ro.getManifestUri());
-        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
     }
 
 
