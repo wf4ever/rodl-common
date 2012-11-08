@@ -24,4 +24,5 @@ public class RO {
     public static final Property annotatesAggregatedResource = ontModel.getProperty(NAMESPACE
             + "annotatesAggregatedResource");
     public static final Property entryName = ontModel.getProperty(NAMESPACE + "entryName");
+    public static final Property rootFolder = ontModel.getProperty(NAMESPACE + "rootFolder");
 }
