@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "research_objects")
-public final class ResearchObject extends ActiveRecord {
+public class ResearchObject extends ActiveRecord {
 
     /** id. */
     private static final long serialVersionUID = 9168888879916459732L;
@@ -49,6 +49,9 @@ public final class ResearchObject extends ActiveRecord {
     /** RO edition id in dLibra, default is 0. */
     private long dlEditionId = 0;
 
+    /** Fixed roevo annotation file path. */
+    private String roevoPath = ".ro/evo_info.ttl";
+
 
     /**
      * Constructor.
@@ -64,7 +67,7 @@ public final class ResearchObject extends ActiveRecord {
      * @param uri
      *            RO URI
      */
-    private ResearchObject(URI uri) {
+    protected ResearchObject(URI uri) {
         setUri(uri.normalize());
     }
 
@@ -175,4 +178,25 @@ public final class ResearchObject extends ActiveRecord {
         return findByPrimaryKey(ResearchObject.class, uri.toString());
     }
 
+
+    /**
+     * Get the manifest format.
+     * 
+     * @return manifest format
+     */
+    @Transient
+    public String getManifestFormat() {
+        return "RDF/XML";
+    }
+
+
+    /**
+     * Get the manifest format.
+     * 
+     * @return manifest format
+     */
+    @Transient
+    public URI getFixedEvolutionAnnotationBodyPath() {
+        return getUri().resolve(roevoPath);
+    }
 }

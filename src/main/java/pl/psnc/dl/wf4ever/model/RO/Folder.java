@@ -15,7 +15,7 @@ import org.openrdf.rio.RDFFormat;
 public class Folder extends Resource {
 
     /** folder entries. */
-    private List<FolderEntry> folderEntries = new ArrayList<>();
+    private List<FolderEntry> folderEntries = new ArrayList<FolderEntry>();
 
 
     public List<FolderEntry> getFolderEntries() {
