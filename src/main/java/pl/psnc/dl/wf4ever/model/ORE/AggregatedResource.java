@@ -2,7 +2,7 @@ package pl.psnc.dl.wf4ever.model.ORE;
 
 import java.net.URI;
 
-import pl.psnc.dl.wf4ever.model.RO.Resource;
+import pl.psnc.dl.wf4ever.model.RDF.Thing;
 
 /**
  * Simple Aggregated Resource model.
@@ -10,34 +10,24 @@ import pl.psnc.dl.wf4ever.model.RO.Resource;
  * @author pejot
  * 
  */
-public class AggregatedResource extends Resource {
+public class AggregatedResource extends Thing {
+
+    /**
+     * Constructor.
+     */
+    public AggregatedResource() {
+        super();
+    }
+
 
     /**
      * Constructor.
      * 
      * @param uri
-     *            resource uri
+     *            URI
      */
     public AggregatedResource(URI uri) {
         super(uri);
     }
 
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof AggregatedResource)) {
-            return false;
-        }
-        AggregatedResource that = (AggregatedResource) obj;
-        return that.getUri().equals(this.getUri());
-    }
 }

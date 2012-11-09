@@ -16,7 +16,7 @@ public class AnnotationBody extends Resource {
      * Constructor.
      * 
      * @param uri
-     *            the uri of th resource.
+     *            the uri of the resource.
      */
     public AnnotationBody(URI uri) {
         super(uri);
