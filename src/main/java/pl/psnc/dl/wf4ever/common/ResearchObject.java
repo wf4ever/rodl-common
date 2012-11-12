@@ -14,6 +14,8 @@ import javax.persistence.Transient;
 
 import org.apache.log4j.Logger;
 
+import pl.psnc.dl.wf4ever.dl.DigitalPublication;
+
 /**
  * A DAO for a research object.
  * 
@@ -22,7 +24,7 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "research_objects")
-public class ResearchObject extends ActiveRecord {
+public class ResearchObject extends ActiveRecord implements DigitalPublication {
 
     /** id. */
     private static final long serialVersionUID = 9168888879916459732L;
@@ -68,6 +70,7 @@ public class ResearchObject extends ActiveRecord {
      *            RO URI
      */
     protected ResearchObject(URI uri) {
+        this();
         setUri(uri.normalize());
     }
 
@@ -88,47 +91,59 @@ public class ResearchObject extends ActiveRecord {
     }
 
 
+    @Override
     @Basic
     public long getDlWorkspaceId() {
         return dlWorkspaceId;
     }
 
 
+    @Override
     public void setDlWorkspaceId(long dlWorkspaceId) {
         this.dlWorkspaceId = dlWorkspaceId;
+        save();
     }
 
 
+    @Override
     @Basic
     public long getDlROId() {
         return dlROId;
     }
 
 
+    @Override
     public void setDlROId(long dlROId) {
         this.dlROId = dlROId;
+        save();
     }
 
 
+    @Override
     @Basic
     public long getDlROVersionId() {
         return dlROVersionId;
     }
 
 
+    @Override
     public void setDlROVersionId(long dlROVersionId) {
         this.dlROVersionId = dlROVersionId;
+        save();
     }
 
 
+    @Override
     @Basic
     public long getDlEditionId() {
         return dlEditionId;
     }
 
 
+    @Override
     public void setDlEditionId(long dlEditionId) {
         this.dlEditionId = dlEditionId;
+        save();
     }
 
 
@@ -150,12 +165,14 @@ public class ResearchObject extends ActiveRecord {
     }
 
 
+    @Override
     @Transient
     public URI getUri() {
         return uri;
     }
 
 
+    @Override
     public void setUri(URI uri) {
         this.uri = uri;
     }

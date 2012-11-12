@@ -6,7 +6,6 @@ package pl.psnc.dl.wf4ever.dl;
 import java.io.InputStream;
 import java.net.URI;
 
-import pl.psnc.dl.wf4ever.common.ResearchObject;
 import pl.psnc.dl.wf4ever.common.ResourceInfo;
 import pl.psnc.dl.wf4ever.common.UserProfile;
 
@@ -61,7 +60,7 @@ public interface DigitalLibrary {
      * @throws NotFoundException
      *             research object not found
      */
-    InputStream getZippedFolder(ResearchObject ro, String folder)
+    InputStream getZippedFolder(DigitalPublication ro, String folder)
             throws DigitalLibraryException, NotFoundException;
 
 
@@ -78,7 +77,7 @@ public interface DigitalLibrary {
      * @throws NotFoundException
      *             research object not found
      */
-    InputStream getFileContents(ResearchObject ro, String filePath)
+    InputStream getFileContents(DigitalPublication ro, String filePath)
             throws DigitalLibraryException, NotFoundException;
 
 
@@ -93,7 +92,7 @@ public interface DigitalLibrary {
      * @throws DigitalLibraryException
      *             dLibra error
      */
-    boolean fileExists(ResearchObject ro, String filePath)
+    boolean fileExists(DigitalPublication ro, String filePath)
             throws DigitalLibraryException;
 
 
@@ -116,7 +115,7 @@ public interface DigitalLibrary {
      * @throws AccessDeniedException
      *             no access rights
      */
-    ResourceInfo createOrUpdateFile(ResearchObject ro, String filePath, InputStream inputStream, String type)
+    ResourceInfo createOrUpdateFile(DigitalPublication ro, String filePath, InputStream inputStream, String type)
             throws DigitalLibraryException, NotFoundException, AccessDeniedException;
 
 
@@ -135,7 +134,7 @@ public interface DigitalLibrary {
      * @throws DigitalLibraryException
      *             dLibra exception
      */
-    ResourceInfo getFileInfo(ResearchObject ro, String filePath)
+    ResourceInfo getFileInfo(DigitalPublication ro, String filePath)
             throws NotFoundException, DigitalLibraryException, AccessDeniedException;
 
 
@@ -151,7 +150,7 @@ public interface DigitalLibrary {
      * @throws NotFoundException
      *             research object or file not found
      */
-    void deleteFile(ResearchObject ro, String filePath)
+    void deleteFile(DigitalPublication ro, String filePath)
             throws DigitalLibraryException, NotFoundException;
 
 
@@ -173,7 +172,7 @@ public interface DigitalLibrary {
      * @throws AccessDeniedException
      *             no rights to add objects to DL
      */
-    void createResearchObject(ResearchObject ro, InputStream mainFileContent, String mainFilePath,
+    void createResearchObject(DigitalPublication ro, InputStream mainFileContent, String mainFilePath,
             String mainFileMimeType)
             throws DigitalLibraryException, ConflictException, AccessDeniedException;
 
@@ -188,7 +187,7 @@ public interface DigitalLibrary {
      * @throws NotFoundException
      *             research object was not found
      */
-    void deleteResearchObject(ResearchObject ro)
+    void deleteResearchObject(DigitalPublication ro)
             throws DigitalLibraryException, NotFoundException;
 
 
@@ -247,7 +246,7 @@ public interface DigitalLibrary {
      * @throws NotFoundException
      *             research object not found
      */
-    InputStream getZippedResearchObject(ResearchObject ro)
+    InputStream getZippedResearchObject(DigitalPublication ro)
             throws DigitalLibraryException, NotFoundException;
 
 
@@ -263,7 +262,7 @@ public interface DigitalLibrary {
      * @throws NotFoundException
      *             research object not found
      */
-    void storeAttributes(ResearchObject ro, Multimap<URI, Object> roAttributes)
+    void storeAttributes(DigitalPublication ro, Multimap<URI, Object> roAttributes)
             throws NotFoundException, DigitalLibraryException;
 
 }
