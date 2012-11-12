@@ -10,14 +10,14 @@ public class ROEVO {
 
     public static final String NAMESPACE = "http://purl.org/wf4ever/roevo#";
     public static OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,ModelFactory.createDefaultModel().read(NAMESPACE));
-    public static final OntClass LiveROClass = ontModel.getOntClass(NAMESPACE + "LiveRO");
-    public static final OntClass SnapshotROClass = ontModel.getOntClass(NAMESPACE + "SnapshotRO");
-    public static final OntClass ArchivedROClass = ontModel.getOntClass(NAMESPACE + "ArchivedRO");
-    public static final OntClass ChangeSpecificationClass = ontModel.getOntClass(NAMESPACE + "ChangeSpecification");
-    public static final OntClass ChangeClass = ontModel.getOntClass(NAMESPACE + "Change");
-    public static final OntClass AdditionClass = ontModel.getOntClass(NAMESPACE + "Addition");
-    public static final OntClass ModificationClass = ontModel.getOntClass(NAMESPACE + "Modification");
-    public static final OntClass RemovalClass = ontModel.getOntClass(NAMESPACE + "Removal");
+    public static final OntClass LiveRO = ontModel.getOntClass(NAMESPACE + "LiveRO");
+    public static final OntClass SnapshotRO = ontModel.getOntClass(NAMESPACE + "SnapshotRO");
+    public static final OntClass ArchivedRO = ontModel.getOntClass(NAMESPACE + "ArchivedRO");
+    public static final OntClass ChangeSpecification = ontModel.getOntClass(NAMESPACE + "ChangeSpecification");
+    public static final OntClass Change = ontModel.getOntClass(NAMESPACE + "Change");
+    public static final OntClass Addition = ontModel.getOntClass(NAMESPACE + "Addition");
+    public static final OntClass Modification = ontModel.getOntClass(NAMESPACE + "Modification");
+    public static final OntClass Removal = ontModel.getOntClass(NAMESPACE + "Removal");
 
     public static final Property isSnapshotOf = ontModel.getProperty(NAMESPACE + "isSnapshotOf");
     public static final Property hasSnapshot = ontModel.getProperty(NAMESPACE + "hasSnapshot");
