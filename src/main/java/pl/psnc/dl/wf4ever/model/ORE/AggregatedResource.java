@@ -12,6 +12,10 @@ import pl.psnc.dl.wf4ever.model.RDF.Thing;
  */
 public class AggregatedResource extends Thing {
 
+    /** ore:AggregationUri. */
+    protected URI aggregationUri;
+
+
     /**
      * Constructor.
      */
@@ -28,6 +32,16 @@ public class AggregatedResource extends Thing {
      */
     public AggregatedResource(URI uri) {
         super(uri);
+    }
+
+
+    public URI getAggregationUri() {
+        return aggregationUri;
+    }
+
+
+    public void setAggregationUri(URI aggregationUri) {
+        this.aggregationUri = aggregationUri;
     }
 
 }
