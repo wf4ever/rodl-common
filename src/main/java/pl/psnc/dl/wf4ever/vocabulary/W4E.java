@@ -1,7 +1,5 @@
 package pl.psnc.dl.wf4ever.vocabulary;
 
-import java.net.URI;
-
 import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.ontology.OntModel;
@@ -15,10 +13,8 @@ public class W4E {
 
     /** Logger. */
     private static final Logger LOG = Logger.getLogger(W4E.class);
-    public static final String DEFAULT_MANIFEST_PATH = ".ro/manifest.rdf";
 
     public static final Syntax sparqlSyntax = Syntax.syntaxARQ;
-    public static final URI DEFAULT_NAMED_GRAPH_URI = URI.create("sms");
     public static final PrefixMapping standardNamespaces = PrefixMapping.Factory.create()
             .setNsPrefix("ore", ORE.NAMESPACE).setNsPrefix("ro", RO.NAMESPACE).setNsPrefix("roevo", ROEVO.NAMESPACE)
             .setNsPrefix("dcterms", DCTerms.NS).setNsPrefix("foaf", FOAF.NAMESPACE).lock();
