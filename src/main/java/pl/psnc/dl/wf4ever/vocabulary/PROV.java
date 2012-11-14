@@ -5,10 +5,30 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 
-public class PROV {
+/**
+ * W3 provenance ontology.
+ * 
+ * @author piotrekhol
+ * 
+ */
+public final class PROV {
 
+    /** namespace. */
     public static final String NAMESPACE = "http://www.w3.org/ns/prov#";
-    public static OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,ModelFactory.createDefaultModel().read(NAMESPACE));
-    public static final Property hadOriginalSource = ontModel.getProperty(NAMESPACE + "hadOriginalSource");
+
+    /** ontology model. */
+    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ModelFactory
+            .createDefaultModel().read(NAMESPACE));
+
+    /** prov:hadOriginalSource. */
+    public static final Property hadOriginalSource = ONT_MODEL.getProperty(NAMESPACE + "hadOriginalSource");
+
+
+    /**
+     * Constructor.
+     */
+    private PROV() {
+        //nope
+    }
 
 }

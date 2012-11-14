@@ -6,21 +6,54 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 
-public class ORE {
+/**
+ * Object Reuse and Exchange ontology.
+ * 
+ * @author piotrekhol
+ * 
+ */
+public final class ORE {
 
+    /** namespace. */
     public static final String NAMESPACE = "http://www.openarchives.org/ore/terms/";
-    public static OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ModelFactory
+
+    /** ontology model. */
+    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ModelFactory
             .createDefaultModel().read(NAMESPACE));
 
-    public static final OntClass Proxy = ontModel.getOntClass(NAMESPACE + "Proxy");
-    public static final Property describes = ontModel.getProperty(NAMESPACE + "describes");
-    public static final Property isDescribedBy = ontModel.getProperty(NAMESPACE + "isDescribedBy");
-    public static final Property aggregates = ontModel.getProperty(NAMESPACE + "aggregates");
-    public static final Property proxyIn = ontModel.getProperty(NAMESPACE + "proxyIn");
-    public static final Property proxyFor = ontModel.getProperty(NAMESPACE + "proxyFor");
-    public static final OntClass Aggregation = ontModel.getOntClass(NAMESPACE + "Aggregation");
-    public static final OntClass AggregatedResource = ontModel.getOntClass(NAMESPACE + "AggregatedResource");
+    /** ore:Proxy. */
+    public static final OntClass Proxy = ONT_MODEL.getOntClass(NAMESPACE + "Proxy");
 
-    public static final Property isAggregatedBy = ontModel.getProperty(NAMESPACE + "isAggregatedBy");
+    /** ore:describes. */
+    public static final Property describes = ONT_MODEL.getProperty(NAMESPACE + "describes");
+
+    /** ore:isDescribedBy. */
+    public static final Property isDescribedBy = ONT_MODEL.getProperty(NAMESPACE + "isDescribedBy");
+
+    /** ore:aggregates. */
+    public static final Property aggregates = ONT_MODEL.getProperty(NAMESPACE + "aggregates");
+
+    /** ore:proxyIn. */
+    public static final Property proxyIn = ONT_MODEL.getProperty(NAMESPACE + "proxyIn");
+
+    /** ore:proxyFor. */
+    public static final Property proxyFor = ONT_MODEL.getProperty(NAMESPACE + "proxyFor");
+
+    /** ore:Aggregation. */
+    public static final OntClass Aggregation = ONT_MODEL.getOntClass(NAMESPACE + "Aggregation");
+
+    /** ore:AggregatedResource. */
+    public static final OntClass AggregatedResource = ONT_MODEL.getOntClass(NAMESPACE + "AggregatedResource");
+
+    /** ore:isAggregatedBy. */
+    public static final Property isAggregatedBy = ONT_MODEL.getProperty(NAMESPACE + "isAggregatedBy");
+
+
+    /**
+     * Constructor.
+     */
+    private ORE() {
+        //nope
+    }
 
 }

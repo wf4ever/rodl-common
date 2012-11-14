@@ -4,10 +4,31 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 
-public class AO {
+/**
+ * Annotation Ontology.
+ * 
+ * @author piotrekhol
+ * 
+ */
+public final class AO {
 
-    public static String NAMESPACE = "http://purl.org/ao/";
-    public static OntModel ontModel = ModelFactory.createOntologyModel();
-    public static Property body = ontModel.getProperty(NAMESPACE + "body");
-    public static Property annotatesResource = ontModel.getProperty(NAMESPACE + "annotatesResource");
+    /** namespace. */
+    public static final String NAMESPACE = "http://purl.org/ao/";
+
+    /** ontology model. */
+    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel();
+
+    /** ao:body. */
+    public static final Property body = ONT_MODEL.getProperty(NAMESPACE + "body");
+
+    /** ao:annotatesResource. */
+    public static final Property annotatesResource = ONT_MODEL.getProperty(NAMESPACE + "annotatesResource");
+
+
+    /**
+     * Constructor.
+     */
+    private AO() {
+        //nope
+    }
 }
