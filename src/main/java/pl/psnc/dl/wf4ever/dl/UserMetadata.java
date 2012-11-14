@@ -1,32 +1,20 @@
 /**
  * 
  */
-package pl.psnc.dl.wf4ever.common;
+package pl.psnc.dl.wf4ever.dl;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import org.apache.log4j.Logger;
 
 /**
- * RODL user model.
+ * dLibra user model.
  * 
  * @author piotrhol
  * 
  */
-@Entity
-@Table(name = "user_profiles")
-public final class UserProfile extends ActiveRecord {
-
-    /** id. */
-    private static final long serialVersionUID = -4468344863067565271L;
-
+public class UserMetadata {
 
     /** Simple user privileges model. */
     public enum Role {
@@ -40,15 +28,15 @@ public final class UserProfile extends ActiveRecord {
 
 
     /** A profile representing the admin. */
-    public static final UserProfile ADMIN = new UserProfile("admin", "admin", Role.ADMIN,
+    public static final UserMetadata ADMIN = new UserMetadata("admin", "admin", Role.ADMIN,
             URI.create("http://example.org/admin"));
 
     /** A profile representing an anonymous user. */
-    public static final UserProfile PUBLIC = new UserProfile("public", "public user", Role.PUBLIC,
+    public static final UserMetadata PUBLIC = new UserMetadata("public", "public user", Role.PUBLIC,
             URI.create("http://example.org/public"));
 
     /** Logger. */
-    private static final Logger LOG = Logger.getLogger(UserProfile.class);
+    private static final Logger LOG = Logger.getLogger(UserMetadata.class);
 
     /** User login. */
     private String login;
@@ -69,7 +57,7 @@ public final class UserProfile extends ActiveRecord {
     /**
      * Constructor.
      */
-    private UserProfile() {
+    public UserMetadata() {
 
     }
 
@@ -86,7 +74,7 @@ public final class UserProfile extends ActiveRecord {
      * @param uri
      *            uri
      */
-    private UserProfile(String login, String name, Role role, URI uri) {
+    public UserMetadata(String login, String name, Role role, URI uri) {
         super();
         this.login = login;
         this.name = name;
@@ -105,47 +93,8 @@ public final class UserProfile extends ActiveRecord {
      * @param role
      *            role
      */
-    private UserProfile(String login, String name, Role role) {
+    public UserMetadata(String login, String name, Role role) {
         this(login, name, role, null);
-    }
-
-
-    /**
-     * Load instance from database or create a new one.
-     * 
-     * @param login
-     *            login
-     * @param name
-     *            name
-     * @param role
-     *            role
-     * @param uri
-     *            uri
-     * @return an instance
-     */
-    public static UserProfile create(String login, String name, Role role, URI uri) {
-        UserProfile user = findByLogin(login);
-        if (user == null) {
-            return new UserProfile(login, name, role, uri);
-        } else {
-            return user;
-        }
-    }
-
-
-    /**
-     * Load instance from database or create a new one.
-     * 
-     * @param login
-     *            login
-     * @param name
-     *            name
-     * @param role
-     *            role
-     * @return an instance
-     */
-    public static UserProfile create(String login, String name, Role role) {
-        return create(login, name, role, null);
     }
 
 
@@ -187,7 +136,6 @@ public final class UserProfile extends ActiveRecord {
     }
 
 
-    @Basic
     public URI getHomePage() {
         return homePage;
     }
@@ -198,7 +146,6 @@ public final class UserProfile extends ActiveRecord {
     }
 
 
-    @Id
     public String getLogin() {
         return login;
     }
@@ -209,7 +156,6 @@ public final class UserProfile extends ActiveRecord {
     }
 
 
-    @Basic
     public String getName() {
         return name;
     }
@@ -220,7 +166,6 @@ public final class UserProfile extends ActiveRecord {
     }
 
 
-    @Basic
     public Role getRole() {
         return role;
     }
@@ -231,32 +176,8 @@ public final class UserProfile extends ActiveRecord {
     }
 
 
-    @Transient
     public URI getUri() {
         return uri;
-    }
-
-
-    public void setUriString(String uri) {
-        this.uri = URI.create(uri);
-    }
-
-
-    @Basic
-    public String getUriString() {
-        return uri != null ? uri.toString() : null;
-    }
-
-
-    /**
-     * Find by user login.
-     * 
-     * @param login
-     *            user login
-     * @return user profile or null
-     */
-    public static UserProfile findByLogin(String login) {
-        return findByPrimaryKey(UserProfile.class, login);
     }
 
 }

@@ -6,8 +6,6 @@ package pl.psnc.dl.wf4ever.dl;
 import java.io.InputStream;
 import java.net.URI;
 
-import pl.psnc.dl.wf4ever.common.ResourceInfo;
-import pl.psnc.dl.wf4ever.common.UserProfile;
 
 import com.google.common.collect.Multimap;
 
@@ -20,19 +18,6 @@ import com.google.common.collect.Multimap;
 public interface DigitalLibrary {
 
     /**
-     * Get the profile of the user that is logged in to dLibra.
-     * 
-     * @return user profile
-     * @throws NotFoundException
-     *             user profile not found
-     * @throws DigitalLibraryException
-     *             dLibra exception
-     */
-    UserProfile getUserProfile()
-            throws DigitalLibraryException, NotFoundException;
-
-
-    /**
      * Get the profile of a user.
      * 
      * @param login
@@ -43,7 +28,7 @@ public interface DigitalLibrary {
      * @throws DigitalLibraryException
      *             dLibra exception
      */
-    UserProfile getUserProfile(String login)
+    UserMetadata getUserProfile(String login)
             throws DigitalLibraryException, NotFoundException;
 
 
@@ -115,7 +100,7 @@ public interface DigitalLibrary {
      * @throws AccessDeniedException
      *             no access rights
      */
-    ResourceInfo createOrUpdateFile(DigitalPublication ro, String filePath, InputStream inputStream, String type)
+    ResourceMetadata createOrUpdateFile(DigitalPublication ro, String filePath, InputStream inputStream, String type)
             throws DigitalLibraryException, NotFoundException, AccessDeniedException;
 
 
@@ -134,7 +119,7 @@ public interface DigitalLibrary {
      * @throws DigitalLibraryException
      *             dLibra exception
      */
-    ResourceInfo getFileInfo(DigitalPublication ro, String filePath)
+    ResourceMetadata getFileInfo(DigitalPublication ro, String filePath)
             throws NotFoundException, DigitalLibraryException, AccessDeniedException;
 
 
