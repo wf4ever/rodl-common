@@ -23,6 +23,12 @@ public final class PROV {
     /** prov:hadOriginalSource. */
     public static final Property hadOriginalSource = ONT_MODEL.getProperty(NAMESPACE + "hadOriginalSource");
 
+    /** prov:wasRevisionOf. */
+    public static final Property wasRevisionOf = ONT_MODEL.getProperty(NAMESPACE + "wasRevisionOf");
+
+    /** prov:wasDerivedFrom. */
+    public static final Property wasDerivedFrom = ONT_MODEL.getProperty(NAMESPACE + "wasDerivedFrom");
+
 
     /**
      * Constructor.
