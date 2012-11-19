@@ -22,6 +22,7 @@ public class FOAFTest {
         Assert.assertNotNull(FOAF.Agent);
         Assert.assertNotNull(FOAF.name);
         Assert.assertNotNull(FOAF.Person);
+        Assert.assertNotNull(FOAF.primaryTopic);
     }
 
 }

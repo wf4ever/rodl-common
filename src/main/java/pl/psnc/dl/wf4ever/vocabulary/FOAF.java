@@ -18,8 +18,7 @@ public final class FOAF {
     public static final String NAMESPACE = "http://xmlns.com/foaf/0.1/";
 
     /** ontology model. */
-    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(
-        new OntModelSpec(OntModelSpec.OWL_MEM),
+    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(new OntModelSpec(OntModelSpec.OWL_MEM),
         ModelFactory.createDefaultModel().read(RO.NAMESPACE).read(ROEVO.NAMESPACE));
 
     /** foaf:Agent. */
@@ -30,6 +29,9 @@ public final class FOAF {
 
     /** foaf:name. */
     public static final Property name = ONT_MODEL.getProperty(NAMESPACE + "name");
+
+    /** foaf:primaryTopic. */
+    public static final Property primaryTopic = ONT_MODEL.getProperty(NAMESPACE + "primaryTopic");
 
 
     /**
