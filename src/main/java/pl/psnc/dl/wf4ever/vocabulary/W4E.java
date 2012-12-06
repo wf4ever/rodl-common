@@ -6,6 +6,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.shared.PrefixMapping;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 
 /**
@@ -29,12 +30,12 @@ public final class W4E {
         new OntModelSpec(OntModelSpec.OWL_MEM), ModelFactory.createDefaultModel());
     static {
         try {
-            DEFAULT_MODEL.read(RO.NAMESPACE);
+            DEFAULT_MODEL.addSubModel(FileManager.get().loadModel(RO.NAMESPACE));
         } catch (Exception e) {
             LOG.error("Could not read RO model", e);
         }
         try {
-            DEFAULT_MODEL.read(ROEVO.NAMESPACE);
+            DEFAULT_MODEL.addSubModel(FileManager.get().loadModel(ROEVO.NAMESPACE));
         } catch (Exception e) {
             LOG.error("Could not read ROEVO model", e);
         }
