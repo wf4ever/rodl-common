@@ -35,8 +35,8 @@ public class ROEVOTest {
         Assert.assertNotNull(ROEVO.relatedResource);
         Assert.assertNotNull(ROEVO.Removal);
         Assert.assertNotNull(ROEVO.SnapshotRO);
-        Assert.assertNotNull(ROEVO.snapshottedAtTime);
-        Assert.assertNotNull(ROEVO.snapshottedBy);
+        Assert.assertNotNull(ROEVO.snapshotedAtTime);
+        Assert.assertNotNull(ROEVO.snapshotedBy);
         Assert.assertNotNull(ROEVO.wasChangedBy);
     }
 

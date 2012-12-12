@@ -54,8 +54,8 @@ public final class ROEVO {
     /** roevo:hasChange. */
     public static final Property hasChange = ONT_MODEL.getProperty(NAMESPACE + "hasChange");
 
-    /** roevo:snapshottedAtTime. */
-    public static final Property snapshottedAtTime = ONT_MODEL.getProperty(NAMESPACE + "snapshottedAtTime");
+    /** roevo:snapshotedAtTime. */
+    public static final Property snapshotedAtTime = ONT_MODEL.getProperty(NAMESPACE + "snapshotedAtTime");
 
     /** roevo:archivedBy. */
     public static final Property archivedBy = ONT_MODEL.getProperty(NAMESPACE + "archivedBy");
@@ -69,8 +69,8 @@ public final class ROEVO {
     /** roevo:archivedAtTime. */
     public static final Property archivedAtTime = ONT_MODEL.getProperty(NAMESPACE + "archivedAtTime");
 
-    /** roevo:snapshottedBy. */
-    public static final Property snapshottedBy = ONT_MODEL.getProperty(NAMESPACE + "snapshottedBy");
+    /** roevo:snapshotedBy. */
+    public static final Property snapshotedBy = ONT_MODEL.getProperty(NAMESPACE + "snapshotedBy");
 
     /** roevo:wasChangedBy. */
     public static final Property wasChangedBy = ONT_MODEL.getProperty(NAMESPACE + "wasChangedBy");
