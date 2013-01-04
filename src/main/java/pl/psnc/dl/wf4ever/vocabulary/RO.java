@@ -5,6 +5,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.util.FileManager;
 
 /**
  * Research Object ontology.
@@ -18,8 +19,8 @@ public final class RO {
     public static final String NAMESPACE = "http://purl.org/wf4ever/ro#";
 
     /** ontology model. */
-    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ModelFactory
-            .createDefaultModel().read(NAMESPACE));
+    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, FileManager.get()
+            .loadModel(NAMESPACE));
 
     /** ro:ResearchObject. */
     public static final OntClass ResearchObject = ONT_MODEL.getOntClass(NAMESPACE + "ResearchObject");

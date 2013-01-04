@@ -5,6 +5,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.util.FileManager;
 
 /**
  * FOAF ontology.
@@ -19,7 +20,7 @@ public final class FOAF {
 
     /** ontology model. */
     public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(new OntModelSpec(OntModelSpec.OWL_MEM),
-        ModelFactory.createDefaultModel().read(RO.NAMESPACE).read(ROEVO.NAMESPACE));
+        FileManager.get().loadModel(NAMESPACE));
 
     /** foaf:Agent. */
     public static final OntClass Agent = ONT_MODEL.getOntClass(NAMESPACE + "Agent");
