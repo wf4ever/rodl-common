@@ -1,12 +1,12 @@
 package pl.psnc.dl.wf4ever.dl;
 
 /**
- * An RODL exception.
+ * A dLibra exception.
  * 
  * @author piotrhol
  * 
  */
-public class DigitalLibraryException extends Exception {
+public class DigitalLibraryException extends RodlException {
 
     /** id. */
     private static final long serialVersionUID = 8004921765200303834L;
@@ -19,7 +19,7 @@ public class DigitalLibraryException extends Exception {
      *            base exception
      */
     public DigitalLibraryException(Exception e) {
-        super(e);
+        super("An unknown exception", e);
     }
 
 }

@@ -1,12 +1,12 @@
 package pl.psnc.dl.wf4ever.dl;
 
 /**
- * Operation failed because the access was denied.
+ * Generic RODL exception.
  * 
  * @author piotrekhol
  * 
  */
-public class AccessDeniedException extends RodlException {
+public class RodlException extends RuntimeException {
 
     /** id. */
     private static final long serialVersionUID = 2157102296863571887L;
@@ -18,7 +18,7 @@ public class AccessDeniedException extends RodlException {
      * @param message
      *            message
      */
-    public AccessDeniedException(String message) {
+    public RodlException(String message) {
         super(message);
     }
 
@@ -31,7 +31,7 @@ public class AccessDeniedException extends RodlException {
      * @param e
      *            parent exception
      */
-    public AccessDeniedException(String message, Exception e) {
+    public RodlException(String message, Exception e) {
         super(message, e);
     }
 }

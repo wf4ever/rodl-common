@@ -6,7 +6,7 @@ package pl.psnc.dl.wf4ever.dl;
  * @author piotrek
  * 
  */
-public class NotFoundException extends Exception {
+public class NotFoundException extends RodlException {
 
     /** id. */
     private static final long serialVersionUID = -3060338267583511733L;
