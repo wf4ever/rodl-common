@@ -21,6 +21,7 @@ public class AOTest {
         Assert.assertNotNull(AO.ONT_MODEL);
         Assert.assertNotNull(AO.annotatesResource);
         Assert.assertNotNull(AO.body);
+        Assert.assertNotNull(AO.Annotation);
     }
 
 }

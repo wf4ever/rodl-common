@@ -1,5 +1,6 @@
 package pl.psnc.dl.wf4ever.vocabulary;
 
+import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -26,6 +27,9 @@ public final class AO {
 
     /** ao:annotatesResource. */
     public static final Property annotatesResource = ONT_MODEL.getProperty(NAMESPACE + "annotatesResource");
+
+    /** ao:Annotation. */
+    public static final OntClass Annotation = ONT_MODEL.getOntClass(NAMESPACE + "Annotation");
 
 
     /**
