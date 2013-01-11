@@ -28,6 +28,7 @@ public class ORETest {
         Assert.assertNotNull(ORE.Proxy);
         Assert.assertNotNull(ORE.proxyFor);
         Assert.assertNotNull(ORE.proxyIn);
+        Assert.assertNotNull(ORE.ResourceMap);
     }
 
 }

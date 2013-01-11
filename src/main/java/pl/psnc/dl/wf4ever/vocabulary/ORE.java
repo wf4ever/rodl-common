@@ -46,6 +46,9 @@ public final class ORE {
     /** ore:AggregatedResource. */
     public static final OntClass AggregatedResource = ONT_MODEL.getOntClass(NAMESPACE + "AggregatedResource");
 
+    /** ore:ResourceMap. */
+    public static final OntClass ResourceMap = ONT_MODEL.getOntClass(NAMESPACE + "ResourceMap");
+
     /** ore:isAggregatedBy. */
     public static final Property isAggregatedBy = ONT_MODEL.getProperty(NAMESPACE + "isAggregatedBy");
 
