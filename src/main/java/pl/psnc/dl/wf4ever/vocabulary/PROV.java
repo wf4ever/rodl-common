@@ -4,6 +4,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.util.FileManager;
 
 /**
  * W3 provenance ontology.
@@ -17,8 +18,8 @@ public final class PROV {
     public static final String NAMESPACE = "http://www.w3.org/ns/prov#";
 
     /** ontology model. */
-    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ModelFactory
-            .createDefaultModel().read(NAMESPACE));
+    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, FileManager.get()
+            .loadModel(NAMESPACE));
 
     /** prov:hadOriginalSource. */
     public static final Property hadOriginalSource = ONT_MODEL.getProperty(NAMESPACE + "hadOriginalSource");

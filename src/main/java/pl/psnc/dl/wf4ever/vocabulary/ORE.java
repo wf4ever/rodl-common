@@ -5,6 +5,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.util.FileManager;
 
 /**
  * Object Reuse and Exchange ontology.
@@ -18,8 +19,8 @@ public final class ORE {
     public static final String NAMESPACE = "http://www.openarchives.org/ore/terms/";
 
     /** ontology model. */
-    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ModelFactory
-            .createDefaultModel().read(NAMESPACE));
+    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, FileManager.get()
+            .loadModel(NAMESPACE));
 
     /** ore:Proxy. */
     public static final OntClass Proxy = ONT_MODEL.getOntClass(NAMESPACE + "Proxy");
@@ -44,6 +45,9 @@ public final class ORE {
 
     /** ore:AggregatedResource. */
     public static final OntClass AggregatedResource = ONT_MODEL.getOntClass(NAMESPACE + "AggregatedResource");
+
+    /** ore:ResourceMap. */
+    public static final OntClass ResourceMap = ONT_MODEL.getOntClass(NAMESPACE + "ResourceMap");
 
     /** ore:isAggregatedBy. */
     public static final Property isAggregatedBy = ONT_MODEL.getProperty(NAMESPACE + "isAggregatedBy");
