@@ -187,7 +187,7 @@ public interface DigitalLibrary {
      * @throws DigitalLibraryException
      *             dLibra error
      */
-    boolean createUser(String userId, String password, String username)
+    boolean createOrUpdateUser(String userId, String password, String username)
             throws DigitalLibraryException;
 
 
