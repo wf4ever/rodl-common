@@ -1,6 +1,5 @@
 package pl.psnc.dl.wf4ever.preservation.client;
 
-import java.io.InputStream;
 import java.net.URI;
 
 import pl.psnc.dl.wf4ever.preservation.model.ResearchObjectSerializable;
@@ -15,9 +14,9 @@ public interface RepositoryClient {
      * 
      * @param uri
      *            preserver resource uri (full path)
-     * @return preserved Research Object as InputStream
+     * @return preserved Research Object
      */
-    InputStream get(URI uri);
+    ResearchObjectSerializable get(URI uri);
 
 
     /**
@@ -56,5 +55,5 @@ public interface RepositoryClient {
      * @param status
      *            status page uri
      */
-    Boolean deleteWait(URI status);
+    boolean deleteWait(URI status);
 }
