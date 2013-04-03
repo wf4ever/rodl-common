@@ -1,7 +1,7 @@
 package pl.psnc.dl.wf4ever.preservation.model;
 
 import java.net.URI;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * Main object transfered between rodl and repository.
@@ -14,9 +14,9 @@ public interface ResearchObjectSerializable {
     /**
      * Get serializable RO component (aggregated resources + resource maps).
      * 
-     * @return the set of serializable components
+     * @return the map of serializable components
      */
-    Set<ResearchObjectComponentSerializable> getSerializables();
+    Map<URI, ResearchObjectComponentSerializable> getSerializables();
 
 
     /**
