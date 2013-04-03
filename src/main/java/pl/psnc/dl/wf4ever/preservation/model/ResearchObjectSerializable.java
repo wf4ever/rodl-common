@@ -12,7 +12,7 @@ import java.util.Set;
 public interface ResearchObjectSerializable {
 
     /**
-     * Get serializable RO component (aggregated resources + resource maps)
+     * Get serializable RO component (aggregated resources + resource maps).
      * 
      * @return the set of serializable components
      */

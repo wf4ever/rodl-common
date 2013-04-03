@@ -8,7 +8,7 @@ import org.openrdf.rio.RDFFormat;
 import pl.psnc.dl.wf4ever.dl.ResourceMetadata;
 
 /**
- * The research object component (every resource aggregated by RO).
+ * A research object component that has its serializable representation - aggregated resources and resource maps.
  */
 public interface ResearchObjectComponentSerializable {
 
@@ -72,4 +72,38 @@ public interface ResearchObjectComponentSerializable {
      * @return input stream from the manifest or null if not a named graph
      */
     InputStream getPublicGraphAsInputStream(RDFFormat syntax);
+
+
+    /**
+     * Get the resource filename, i.e. the last segment of the path, decoded.
+     * 
+     * @return the filename
+     */
+    String getName();
+
+
+    /**
+     * Get the research object in which the component is stored.
+     * 
+     * @return a research object
+     */
+    ResearchObjectSerializable getResearchObject();
+
+
+    /**
+     * Check if the resource is internal. Resource is internal only if its content has been deployed under the control
+     * of the service. A resource that has "internal" URI but the content has not been uploaded is considered external.
+     * 
+     * @return true if the resource content is deployed under the control of the service, false otherwise
+     */
+    boolean isInternal();
+
+
+    /**
+     * Get a path relative to the Research Object that contains this component.
+     * 
+     * @return a path (decoded, i.e. with spaces and NOT %20).
+     */
+    String getPath();
+
 }

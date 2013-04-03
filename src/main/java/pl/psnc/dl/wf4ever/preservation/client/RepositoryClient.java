@@ -17,7 +17,7 @@ public interface RepositoryClient {
      *            preserver resource uri (full path)
      * @return preserved Research Object as InputStream
      */
-    InputStream get(URI uri);
+    InputStream getBlocking(URI uri);
 
 
     /**
@@ -31,13 +31,13 @@ public interface RepositoryClient {
 
 
     /**
-     * Get the id of stored RO
+     * Get the id of stored RO.
      * 
      * @param status
      *            status page
      * @return the new URI if RO was successfully created, null otherwise
      */
-    URI postWait(URI status);
+    URI postBlocking(URI status);
 
 
     /**
@@ -51,10 +51,11 @@ public interface RepositoryClient {
 
 
     /**
-     * Check if the the RO was successfully deleted
+     * Check if the the RO was successfully deleted.
      * 
      * @param status
      *            status page uri
+     * @return
      */
-    Boolean deleteWait(URI status);
+    boolean deleteBlocking(URI status);
 }
