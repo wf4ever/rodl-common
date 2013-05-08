@@ -57,4 +57,25 @@ public interface RepositoryClient {
      * @return
      */
     boolean deleteBlocking(URI status);
+
+
+    /**
+     * Update in the preservation service the instance of ResearchO bject.
+     * 
+     * @param researchObject
+     *            new version (updated verion) of Research OBject sent to repository
+     * @return status page uri
+     */
+    URI update(ResearchObjectSerializable researchObject);
+
+
+    /**
+     * Get the id of updated Research Object
+     * 
+     * @param status
+     *            status page
+     * @return the new URI if RO was successfully created, null otherwise
+     */
+    URI updateBlocking(URI status);
+
 }

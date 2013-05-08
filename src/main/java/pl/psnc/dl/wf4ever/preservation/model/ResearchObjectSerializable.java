@@ -33,4 +33,10 @@ public interface ResearchObjectSerializable {
      * @return RO uri
      */
     URI getUri();
+
+
+    /**
+     * Update serialized index.
+     */
+    void updateIndexAttributes();
 }
