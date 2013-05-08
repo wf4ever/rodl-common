@@ -36,7 +36,7 @@ public interface RepositoryClient {
      *            status page
      * @return the new URI if RO was successfully created, null otherwise
      */
-    URI postBlocking(URI status);
+    URI postORUpdateBlocking(URI status);
 
 
     /**
@@ -67,15 +67,5 @@ public interface RepositoryClient {
      * @return status page uri
      */
     URI update(ResearchObjectSerializable researchObject);
-
-
-    /**
-     * Get the id of updated Research Object
-     * 
-     * @param status
-     *            status page
-     * @return the new URI if RO was successfully created, null otherwise
-     */
-    URI updateBlocking(URI status);
 
 }
