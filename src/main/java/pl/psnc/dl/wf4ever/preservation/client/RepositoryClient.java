@@ -68,4 +68,9 @@ public interface RepositoryClient {
      */
     URI update(ResearchObjectSerializable researchObject);
 
+
+    /**
+     * Get the darceo service uri.
+     */
+    URI getServiceUri();
 }
