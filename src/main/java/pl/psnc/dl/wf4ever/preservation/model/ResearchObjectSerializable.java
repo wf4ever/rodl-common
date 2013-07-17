@@ -36,7 +36,15 @@ public interface ResearchObjectSerializable {
 
 
     /**
-     * Update serialized index.
+     * Update the search index.
      */
     void updateIndexAttributes();
+
+
+    /**
+     * Delete the RO from the search index.
+     * 
+     */
+    void deleteIndexAttributes();
+
 }
