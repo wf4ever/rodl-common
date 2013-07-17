@@ -123,6 +123,27 @@ public interface DigitalLibrary {
 
 
     /**
+     * Recalculate the file metadata.
+     * 
+     * @param ro
+     *            research object
+     * @param filePath
+     *            file path
+     * @param mimeType
+     *            MIME type
+     * @return file metadata
+     * @throws NotFoundException
+     *             file not found
+     * @throws AccessDeniedException
+     *             no rights to get resource metadata
+     * @throws DigitalLibraryException
+     *             dLibra exception
+     */
+    ResourceMetadata updateFileInfo(URI ro, String filePath, String mimeType)
+            throws NotFoundException, DigitalLibraryException, AccessDeniedException;
+
+
+    /**
      * Delete a file.
      * 
      * @param ro
