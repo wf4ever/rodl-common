@@ -59,6 +59,12 @@ public final class RO {
     /** ro:checksum, not really declared in the ontology. */
     public static final Property checksum = ONT_MODEL.getProperty(NAMESPACE + "checksum");
 
+    /** ro:uploadAZip, not really declared in the ontology. */
+    public static final Property uploadAZip = ONT_MODEL.getProperty(NAMESPACE + "uploadAZip");
+
+    /** ro:createFromZip, not really declared in the ontology. */
+    public static final Property createFromZip = ONT_MODEL.getProperty(NAMESPACE + "createFromZip");
+
 
     /**
      * Constructor.
