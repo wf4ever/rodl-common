@@ -19,13 +19,13 @@ public final class AO {
     public static final OntModel ONT_MODEL = W4E.loadOntModel(NAMESPACE);
 
     /** ao:body. */
-    public static final Property body = ONT_MODEL.getProperty(NAMESPACE + "body");
+    public static final Property body = ONT_MODEL.createProperty(NAMESPACE + "body");
 
     /** ao:annotatesResource. */
-    public static final Property annotatesResource = ONT_MODEL.getProperty(NAMESPACE + "annotatesResource");
+    public static final Property annotatesResource = ONT_MODEL.createProperty(NAMESPACE + "annotatesResource");
 
     /** ao:Annotation. */
-    public static final OntClass Annotation = ONT_MODEL.getOntClass(NAMESPACE + "Annotation");
+    public static final OntClass Annotation = ONT_MODEL.createClass(NAMESPACE + "Annotation");
 
 
     /**

@@ -18,13 +18,13 @@ public final class ROEVOService {
     public static final OntModel ONT_MODEL = W4E.loadOntModel(NAMESPACE);
 
     /** evo:copy. */
-    public static final Property copy = ONT_MODEL.getProperty(NAMESPACE + "copy");
+    public static final Property copy = ONT_MODEL.createProperty(NAMESPACE + "copy");
 
     /** evo:finalize. */
-    public static final Property finalize = ONT_MODEL.getProperty(NAMESPACE + "finalize");
+    public static final Property finalize = ONT_MODEL.createProperty(NAMESPACE + "finalize");
 
     /** evo:info. */
-    public static final Property info = ONT_MODEL.getProperty(NAMESPACE + "info");
+    public static final Property info = ONT_MODEL.createProperty(NAMESPACE + "info");
 
 
     /**

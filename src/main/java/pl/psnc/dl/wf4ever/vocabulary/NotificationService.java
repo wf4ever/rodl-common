@@ -19,7 +19,7 @@ public final class NotificationService {
     public static final OntModel ONT_MODEL = W4E.loadOntModel(NAMESPACE);
 
     /** evo:copy. */
-    public static final Property notifications = ONT_MODEL.getProperty(NAMESPACE + "notifications");
+    public static final Property notifications = ONT_MODEL.createProperty(NAMESPACE + "notifications");
 
 
     /**

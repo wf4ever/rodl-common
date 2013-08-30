@@ -19,16 +19,16 @@ public final class FOAF {
     public static final OntModel ONT_MODEL = W4E.loadOntModel(NAMESPACE);
 
     /** foaf:Agent. */
-    public static final OntClass Agent = ONT_MODEL.getOntClass(NAMESPACE + "Agent");
+    public static final OntClass Agent = ONT_MODEL.createClass(NAMESPACE + "Agent");
 
     /** foaf:Person. */
-    public static final OntClass Person = ONT_MODEL.getOntClass(NAMESPACE + "Person");
+    public static final OntClass Person = ONT_MODEL.createClass(NAMESPACE + "Person");
 
     /** foaf:name. */
-    public static final Property name = ONT_MODEL.getProperty(NAMESPACE + "name");
+    public static final Property name = ONT_MODEL.createProperty(NAMESPACE + "name");
 
     /** foaf:primaryTopic. */
-    public static final Property primaryTopic = ONT_MODEL.getProperty(NAMESPACE + "primaryTopic");
+    public static final Property primaryTopic = ONT_MODEL.createProperty(NAMESPACE + "primaryTopic");
 
 
     /**

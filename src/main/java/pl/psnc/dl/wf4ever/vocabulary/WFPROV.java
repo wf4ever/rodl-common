@@ -19,28 +19,28 @@ public final class WFPROV {
     public static final OntModel ONT_MODEL = W4E.loadOntModel(NAMESPACE);
 
     /** wfprov:WorkflowRun. */
-    public static final OntClass WorkflowRun = ONT_MODEL.getOntClass(NAMESPACE + "WorkflowRun");
+    public static final OntClass WorkflowRun = ONT_MODEL.createClass(NAMESPACE + "WorkflowRun");
     /** wfprov:Artifact. */
-    public static final OntClass Artifact = ONT_MODEL.getOntClass(NAMESPACE + "Artifact");
+    public static final OntClass Artifact = ONT_MODEL.createClass(NAMESPACE + "Artifact");
     /** wfprov:ProcessRun. */
-    public static final OntClass ProcessRun = ONT_MODEL.getOntClass(NAMESPACE + "ProcessRun");
+    public static final OntClass ProcessRun = ONT_MODEL.createClass(NAMESPACE + "ProcessRun");
     /** wfprov:WorkflowEngine. */
-    public static final OntClass WorkflowEngine = ONT_MODEL.getOntClass(NAMESPACE + "WorkflowEngine");
+    public static final OntClass WorkflowEngine = ONT_MODEL.createClass(NAMESPACE + "WorkflowEngine");
 
     /** wfprov:describedByParameter. */
-    public static final Property describedByParameter = ONT_MODEL.getProperty(NAMESPACE + "describedByParameter");
+    public static final Property describedByParameter = ONT_MODEL.createProperty(NAMESPACE + "describedByParameter");
     /** wfprov:describedByProcess. */
-    public static final Property describedByProcess = ONT_MODEL.getProperty(NAMESPACE + "describedByProcess");
+    public static final Property describedByProcess = ONT_MODEL.createProperty(NAMESPACE + "describedByProcess");
     /** wfprov:describedByWorkflow. */
-    public static final Property describedByWorkflow = ONT_MODEL.getProperty(NAMESPACE + "describedByWorkflow");
+    public static final Property describedByWorkflow = ONT_MODEL.createProperty(NAMESPACE + "describedByWorkflow");
     /** wfprov:usedInput. */
-    public static final Property usedInput = ONT_MODEL.getProperty(NAMESPACE + "usedInput");
+    public static final Property usedInput = ONT_MODEL.createProperty(NAMESPACE + "usedInput");
     /** wfprov:wasEnactedBy. */
-    public static final Property wasEnactedBy = ONT_MODEL.getProperty(NAMESPACE + "wasEnactedBy");
+    public static final Property wasEnactedBy = ONT_MODEL.createProperty(NAMESPACE + "wasEnactedBy");
     /** wfprov:wasOutputFrom. */
-    public static final Property wasOutputFrom = ONT_MODEL.getProperty(NAMESPACE + "wasOutputFrom");
+    public static final Property wasOutputFrom = ONT_MODEL.createProperty(NAMESPACE + "wasOutputFrom");
     /** wfprov:wasPartOfWorkflowRun. */
-    public static final Property wasPartOfWorkflowRun = ONT_MODEL.getProperty(NAMESPACE + "wasPartOfWorkflowRun");
+    public static final Property wasPartOfWorkflowRun = ONT_MODEL.createProperty(NAMESPACE + "wasPartOfWorkflowRun");
 
 
     /**

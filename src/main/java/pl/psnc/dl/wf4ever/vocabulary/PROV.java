@@ -18,13 +18,13 @@ public final class PROV {
     public static final OntModel ONT_MODEL = W4E.loadOntModel(NAMESPACE);
 
     /** prov:hadOriginalSource. */
-    public static final Property hadOriginalSource = ONT_MODEL.getProperty(NAMESPACE + "hadOriginalSource");
+    public static final Property hadOriginalSource = ONT_MODEL.createProperty(NAMESPACE + "hadOriginalSource");
 
     /** prov:wasRevisionOf. */
-    public static final Property wasRevisionOf = ONT_MODEL.getProperty(NAMESPACE + "wasRevisionOf");
+    public static final Property wasRevisionOf = ONT_MODEL.createProperty(NAMESPACE + "wasRevisionOf");
 
     /** prov:wasDerivedFrom. */
-    public static final Property wasDerivedFrom = ONT_MODEL.getProperty(NAMESPACE + "wasDerivedFrom");
+    public static final Property wasDerivedFrom = ONT_MODEL.createProperty(NAMESPACE + "wasDerivedFrom");
 
 
     /**
