@@ -48,4 +48,22 @@ public final class W4E {
     private W4E() {
         //nope
     }
+
+
+    /**
+     * Load the ontology model but don't fail if unavailable.
+     * 
+     * @param namespace
+     *            model URI
+     * @return Ontology model, empty in case of error
+     */
+    public static OntModel loadOntModel(String namespace) {
+        try {
+            return ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, FileManager.get().loadModel(namespace));
+        } catch (Exception e) {
+            LOG.error("Can't load namespace " + namespace, e);
+            return ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+        }
+    }
+
 }

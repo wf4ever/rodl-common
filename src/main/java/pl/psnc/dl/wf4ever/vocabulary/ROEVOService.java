@@ -1,8 +1,6 @@
 package pl.psnc.dl.wf4ever.vocabulary;
 
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 
 /**
@@ -17,7 +15,7 @@ public final class ROEVOService {
     public static final String NAMESPACE = "http://purl.org/ro/service/evolution/";
 
     /** ontology model. */
-    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+    public static final OntModel ONT_MODEL = W4E.loadOntModel(NAMESPACE);
 
     /** evo:copy. */
     public static final Property copy = ONT_MODEL.getProperty(NAMESPACE + "copy");

@@ -2,10 +2,7 @@ package pl.psnc.dl.wf4ever.vocabulary;
 
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.util.FileManager;
 
 /**
  * Research Object evolution ontology.
@@ -19,8 +16,7 @@ public final class ROEVO {
     public static final String NAMESPACE = "http://purl.org/wf4ever/roevo#";
 
     /** ontology model. */
-    public static final OntModel ONT_MODEL = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, FileManager.get()
-            .loadModel(NAMESPACE));
+    public static final OntModel ONT_MODEL = W4E.loadOntModel(NAMESPACE);
 
     /** roevo:LiveRO. */
     public static final OntClass LiveRO = ONT_MODEL.getOntClass(NAMESPACE + "LiveRO");
