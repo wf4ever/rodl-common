@@ -20,6 +20,9 @@ public class PROVTest {
         Assert.assertNotNull(PROV.NAMESPACE);
         Assert.assertNotNull(PROV.ONT_MODEL);
         Assert.assertNotNull(PROV.hadOriginalSource);
+        Assert.assertNotNull(PROV.wasRevisionOf);
+        Assert.assertNotNull(PROV.wasDerivedFrom);
+        Assert.assertNotNull(PROV.wasQuotedFrom);
     }
 
 }

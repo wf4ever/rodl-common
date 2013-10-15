@@ -25,7 +25,11 @@ public final class PROV {
 
     /** prov:wasDerivedFrom. */
     public static final Property wasDerivedFrom = ONT_MODEL.createProperty(NAMESPACE + "wasDerivedFrom");
+    /** . */
+    public static final Property wasQuotedFrom = ONT_MODEL.createProperty(NAMESPACE + "wasQuotedFrom");
 
+
+    /** . */
 
     /**
      * Constructor.
