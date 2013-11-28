@@ -23,14 +23,4 @@ public class WFDESC {
 	/** . */
 	public static final OntClass hasSubWorkflow = ONT_MODEL.createClass(NAMESPACE
 			+ "hasSubWorkflow");
-	/** . */
-	public static final OntClass sampleSize = ONT_MODEL.createClass(NAMESPACE + "sampleSize");
-	/** . */
-	public static final OntClass runtime = ONT_MODEL.createClass(NAMESPACE + "runtime");
-	/** . */
-	public static final OntClass previousWorkflow = ONT_MODEL.createClass(NAMESPACE
-			+ "previousWorkflow");
-	/** . */
-	public static final OntClass subsequentWorkflow = ONT_MODEL.createClass(NAMESPACE
-			+ "subsequentWorkflow");
 }

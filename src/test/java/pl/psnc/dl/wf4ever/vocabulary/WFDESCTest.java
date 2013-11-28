@@ -20,9 +20,6 @@ public class WFDESCTest {
 		Assert.assertNotNull(WFDESC.hasInput);
 		Assert.assertNotNull(WFDESC.hasOutput);
 		Assert.assertNotNull(WFDESC.hasSubWorkflow);
-		Assert.assertNotNull(WFDESC.sampleSize);
-		Assert.assertNotNull(WFDESC.subsequentWorkflow);
-		Assert.assertNotNull(WFDESC.runtime);
-		Assert.assertNotNull(WFDESC.previousWorkflow);
+
 	}
 }
